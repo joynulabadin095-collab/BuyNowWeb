@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Delete Account – BuyNow Rider</title>
+<meta name="description" content="Request deletion of your BuyNow Rider account and data.">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="index.html">BuyNow</a>
+<nav aria-label="Main">
+<a href="index.html">Home</a>
+<a href="privacy-policy.html">Privacy Policy</a>
+<a href="terms.html">Terms</a>
+<a href="delete-account.html">Delete Account</a>
+<button id="theme-toggle" type="button">Night mode</button>
+</nav></div></header>
+<div class="wrap"><div class="panel appbar night"><div class="awning"></div><div class="body">
+<h1>Delete your BuyNow Rider account</h1><p class="tag">BuyNow Rider &middot; Android package <code>com.buynow.rider</code></p></div></div></div><main class="wrap">
+<p>Ask us to permanently delete your BuyNow Rider account and the data linked to it.</p>
+<h2>How to request deletion</h2>
+<ol><li>Fill in the form below, or email <a href="mailto:joynulabadin095@gmail.com?subject=BuyNow%20Rider%20Account%20Deletion%20Request">joynulabadin095@gmail.com</a>. Please send it from the Google email linked to your rider account.</li>
+<li>We may contact you to confirm the account is yours.</li>
+<li>We delete the account and data within <strong>30 days</strong> of a confirmed request and email you when it is done.</li></ol>
+<div class="note"><strong>Before you delete:</strong> finish or hand back open deliveries and settle any cash you hold for a stall or customer, so that nobody loses money. We may ask you to settle these first.</div>
+<div class="form-card">
+<form name="delete-rider" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="delete-rider">
+<input type="hidden" name="app" value="BuyNow Rider (com.buynow.rider)">
+<p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+<label for="email">Account email (the Google email you sign in with)</label>
+<input id="email" name="email" type="email" required autocomplete="email">
+<label for="name">Name on the account</label>
+<input id="name" name="name" type="text" autocomplete="name">
+<label for="phone">Phone number on your rider profile (optional, helps us confirm it is you)</label>
+<input id="phone" name="phone" type="tel" autocomplete="tel">
+<label for="reason">Reason (optional)</label>
+<textarea id="reason" name="reason" rows="3"></textarea>
+<label class="check"><input type="checkbox" name="confirm" required><span>I understand this permanently deletes my account and cannot be undone.</span></label>
+<p><button class="btn" type="submit">Request deletion</button></p>
+</form></div>
+<h2>What we delete</h2>
+<ul><li>Your account (Google sign-in link) and rider profile: name, phone, vehicle, area, HOME and live location</li><li>Your NID and driving licence photos</li><li>Your delivery proof photos that still exist</li><li>Your push token, notification preferences and notification inbox</li><li>Your name and phone on delivery records</li></ul>
+<h2>What we may keep</h2>
+<ul><li>Delivery, earning, cash and complaint records that we, the stalls or the customers must keep for dispute, accounting, tax or legal reasons, kept only as long as the law requires</li><li>Backups and logs, which are removed on their normal cycle (up to 30 more days)</li></ul>
+<h2>Delete only some data</h2>
+<p>To remove only some data (for example your document photos or your HOME location) without deleting the account, email us and say which data.</p>
+<p class="muted">Read the <a href="privacy-rider.html">BuyNow Rider privacy policy</a>.</p>
+</main>
+<footer><div class="wrap">&copy; <span id="year">2026</span> BuyNow &middot; Developer: <a href="https://play.google.com/store/apps/dev?id=6514104034641015497" rel="noopener">AI Team by Joynul</a> &middot; Contact: <a href="mailto:joynulabadin095@gmail.com">joynulabadin095@gmail.com</a></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
