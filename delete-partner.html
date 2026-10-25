@@ -28,10 +28,8 @@
 <li>We delete the account and data within <strong>30 days</strong> of a confirmed request and email you when it is done.</li></ol>
 <div class="note"><strong>Before you delete:</strong> finish or cancel open orders and returns, and refund any down payments you owe customers. We may ask you to settle these first so that nobody loses money.</div>
 <div class="form-card">
-<form name="delete-partner" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field">
-<input type="hidden" name="form-name" value="delete-partner">
+<form class="mail-form" name="delete-partner">
 <input type="hidden" name="app" value="BuyNow Partner (com.buynow.vendor)">
-<p hidden><label>Leave this empty: <input name="bot-field"></label></p>
 <label for="email">Account email (the Google email you sign in with)</label>
 <input id="email" name="email" type="email" required autocomplete="email">
 <label for="name">Name on the account</label>
@@ -42,7 +40,7 @@
 <label for="reason">Reason (optional)</label>
 <textarea id="reason" name="reason" rows="3"></textarea>
 <label class="check"><input type="checkbox" name="confirm" required><span>I understand this permanently deletes my account and cannot be undone.</span></label>
-<p><button class="btn" type="submit">Request deletion</button></p>
+<p><button class="btn" type="submit">Request deletion by email</button></p>
 </form></div>
 <p><strong>Trial accounts:</strong> if you use an anonymous trial account, you can delete it and its stall right away with <em>Delete Account &amp; Stall Now</em> in the app profile. Trial accounts are also deleted automatically after 30 days.</p>
 <h2>What we delete</h2>

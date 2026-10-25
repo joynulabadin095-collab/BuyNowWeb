@@ -28,10 +28,8 @@
 <li>We delete the account and data within <strong>30 days</strong> of a confirmed request and email you when it is done.</li></ol>
 <div class="note"><strong>Before you delete:</strong> finish or hand back open deliveries and settle any cash you hold for a stall or customer, so that nobody loses money. We may ask you to settle these first.</div>
 <div class="form-card">
-<form name="delete-rider" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field">
-<input type="hidden" name="form-name" value="delete-rider">
+<form class="mail-form" name="delete-rider">
 <input type="hidden" name="app" value="BuyNow Rider (com.buynow.rider)">
-<p hidden><label>Leave this empty: <input name="bot-field"></label></p>
 <label for="email">Account email (the Google email you sign in with)</label>
 <input id="email" name="email" type="email" required autocomplete="email">
 <label for="name">Name on the account</label>
@@ -41,7 +39,7 @@
 <label for="reason">Reason (optional)</label>
 <textarea id="reason" name="reason" rows="3"></textarea>
 <label class="check"><input type="checkbox" name="confirm" required><span>I understand this permanently deletes my account and cannot be undone.</span></label>
-<p><button class="btn" type="submit">Request deletion</button></p>
+<p><button class="btn" type="submit">Request deletion by email</button></p>
 </form></div>
 <h2>What we delete</h2>
 <ul><li>Your account (Google sign-in link) and rider profile: name, phone, vehicle, area, HOME and live location</li><li>Your NID and driving licence photos</li><li>Your delivery proof photos that still exist</li><li>Your push token, notification preferences and notification inbox</li><li>Your name and phone on delivery records</li></ul>

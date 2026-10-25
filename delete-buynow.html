@@ -28,10 +28,8 @@
 <li>We delete the account and data within <strong>30 days</strong> of a confirmed request and email you when it is done.</li></ol>
 
 <div class="form-card">
-<form name="delete-buynow" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field">
-<input type="hidden" name="form-name" value="delete-buynow">
+<form class="mail-form" name="delete-buynow">
 <input type="hidden" name="app" value="BuyNow (com.buynow.app)">
-<p hidden><label>Leave this empty: <input name="bot-field"></label></p>
 <label for="email">Account email (the Google email you sign in with)</label>
 <input id="email" name="email" type="email" required autocomplete="email">
 <label for="name">Name on the account</label>
@@ -42,7 +40,7 @@
 <label for="reason">Reason (optional)</label>
 <textarea id="reason" name="reason" rows="3"></textarea>
 <label class="check"><input type="checkbox" name="confirm" required><span>I understand this permanently deletes my account and cannot be undone.</span></label>
-<p><button class="btn" type="submit">Request deletion</button></p>
+<p><button class="btn" type="submit">Request deletion by email</button></p>
 </form></div>
 <p><strong>Guest users:</strong> guest accounts are deleted automatically after 30 days, and you can delete a guest account from the Profile screen in the app.</p>
 <h2>What we delete</h2>

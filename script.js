@@ -29,26 +29,19 @@
       if (a.getAttribute('href') === page) a.setAttribute('aria-current', 'page');
     });
 
-    // Deletion forms: send to Netlify Forms, then show the thank-you page
-    document.querySelectorAll('form[data-netlify="true"]').forEach(function (form) {
+    // Deletion forms: build an email to the developer from the fields and open the visitor's mail app
+    document.querySelectorAll('form.mail-form').forEach(function (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var submit = form.querySelector('button[type="submit"]');
-        var original = submit.textContent;
-        submit.disabled = true;
-        submit.textContent = 'Sending...';
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(new FormData(form)).toString()
-        }).then(function (r) {
-          if (!r.ok) throw new Error('bad response');
-          location.href = 'thanks.html';
-        }).catch(function () {
-          submit.disabled = false;
-          submit.textContent = original;
-          alert('The request could not be sent. Please email us instead using the address on this page.');
+        var app = (form.querySelector('input[name="app"]') || {}).value || '';
+        var lines = ['Account deletion request', 'App: ' + app];
+        ['email', 'name', 'phone', 'reason'].forEach(function (n) {
+          var el = form.querySelector('[name="' + n + '"]');
+          if (el && el.value) lines.push(n + ': ' + el.value);
         });
+        lines.push('I understand this permanently deletes my account and cannot be undone.');
+        location.href = 'mailto:joynulabadin095@gmail.com?subject=' + encodeURIComponent('Account Deletion Request: ' + app) +
+          '&body=' + encodeURIComponent(lines.join('\n'));
       });
     });
   });
