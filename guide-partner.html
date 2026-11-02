@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>SellNow ব্যবসার গাইড</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: sticky contents strip, then one narrow column of sections; flows are diagrams, rules are tables. */
+:root{
+  --bg:#f6f7f4; --surface:#ffffff; --ink:#16231f; --soft:#52625c; --line:#d9dfda;
+  --brand:#0f6b52; --brand-weak:#dcefe8; --money:#b45a00; --money-weak:#fbe9d2;
+  --bad:#b3261e; --bad-weak:#f9dedb; --info:#1d5fa8; --info-weak:#dde9f6;
+  --font:'Hind Siliguri','Noto Sans Bengali','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1714; --surface:#16231f; --ink:#e8f0ec; --soft:#9db0a8; --line:#2b3d37;
+  --brand:#4fc9a2; --brand-weak:#183a30; --money:#f0a24a; --money-weak:#3a2a14;
+  --bad:#ff8a80; --bad-weak:#3d1f1c; --info:#8ab8ee; --info-weak:#17283d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1714; --surface:#16231f; --ink:#e8f0ec; --soft:#9db0a8; --line:#2b3d37;
+  --brand:#4fc9a2; --brand-weak:#183a30; --money:#f0a24a; --money-weak:#3a2a14;
+  --bad:#ff8a80; --bad-weak:#3d1f1c; --info:#8ab8ee; --info-weak:#17283d; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;margin:0;
+  padding-block:24px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1{font-size:30px;line-height:1.25;margin:0 0 8px;text-wrap:balance}
+h2{font-size:22px;line-height:1.35;margin:0 0 10px;text-wrap:balance;scroll-margin-top:16px}
+h3{font-size:17px;margin:14px 0 6px}
+p{margin:0 0 10px;max-width:68ch}
+ul,ol{margin:0 0 10px;padding-left:22px}
+li{margin-bottom:5px}
+.lead{color:var(--soft);font-size:17px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);font-weight:700;margin-bottom:6px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.toc a{font-size:13px;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:3px 10px;border-radius:99px}
+.toc a:hover,.toc a:focus-visible{border-color:var(--brand);color:var(--brand)}
+.callout{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
+.callout.money{background:var(--money-weak);border-color:var(--money)}
+.callout.ok{background:var(--brand-weak);border-color:var(--brand)}
+.callout.bad{background:var(--bad-weak);border-color:var(--bad)}
+.callout.info{background:var(--info-weak);border-color:var(--info)}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.callout strong.t{display:block;margin-bottom:4px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+th{font-size:13px;color:var(--soft);font-weight:600;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+.keep{color:var(--money);font-weight:700}
+code{font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 5px}
+.note{font-size:14px;color:var(--soft)}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;background:var(--brand-weak);color:var(--brand);white-space:nowrap}
+.pill.bad{background:var(--bad-weak);color:var(--bad)}
+.pill.warn{background:var(--money-weak);color:var(--money)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.card h3{margin:0 0 6px;font-size:16px}
+.card ul{margin:0}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0}
+.steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--brand-weak);color:var(--brand);font-weight:700;font-size:14px;display:grid;place-items:center}
+.steps b{display:block}
+pre.mermaid{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+</style>
+</head>
+<body>
+<main>
+  <p class="note"><a href="index.html">&larr; BuyNow</a></p>
+  <header>
+    <div class="eyebrow">SellNow (Partner) অ্যাপ · Vendor নির্দেশিকা</div>
+    <h1>আপনার স্টলের ব্যবসা চালানোর পূর্ণ গাইড</h1>
+    <p class="lead">স্টল খোলা থেকে অর্ডার নেওয়া, প্যাক ও ডেলিভারি, advance ও refund, ছাড় ও প্রচার, এবং হিসাব রাখা। প্রতিটি নিয়ম অ্যাপে যেভাবে কাজ করে সেভাবেই লেখা।</p>
+    <nav class="toc" aria-label="সূচি">
+      <a href="#money">১. আয়ের ধরন</a><a href="#start">২. শুরুর ধাপ</a><a href="#products">৩. পণ্য</a><a href="#lifecycle">৪. অর্ডারের পথ</a>
+      <a href="#accept">৫. Accept করা</a><a href="#advance">৬. Advance ও Refund</a><a href="#dispatch">৭. Dispatch</a><a href="#rider">৮. Rider-এর টাকা</a>
+      <a href="#confirm">৯. ডেলিভারি নিশ্চিত</a><a href="#returns">১০. Return ও রিভিউ</a><a href="#growth">১১. বিক্রি বাড়ানো</a><a href="#reports">১২. রিপোর্ট ও স্টক</a>
+      <a href="#timers">১৩. সময়সীমা</a><a href="#status">১৪. অ্যাকাউন্টের অবস্থা</a><a href="#rules">১৫. নিয়ম ও সতর্কতা</a><a href="#help">১৬. সমস্যা হলে</a>
+    </nav>
+  </header>
+
+  <section id="money">
+    <h2>১. আপনার আয় কীভাবে আসে</h2>
+    <p>আপনি পণ্য বিক্রি করেন এবং গ্রাহকের কাছ থেকে সরাসরি টাকা পান। BuyNow মাঝখানে টাকা ধরে রাখে না।</p>
+    <div class="grid">
+      <div class="card"><h3>কমিশন নেই</h3><p style="margin:0">প্রতিটি বিক্রিতে BuyNow কোনো কমিশন কাটে না। কোনো মাসিক ফি বা সাবস্ক্রিপশনও নেই। আপনার বিক্রির টাকা পুরোটাই আপনার।</p></div>
+      <div class="card"><h3>টাকা সরাসরি আপনার হাতে</h3><p style="margin:0">Advance আসে আপনার bKash/Nagad নম্বরে। বাকিটা Cash on Delivery, যা Rider বা আপনার নিজের লোকের মাধ্যমে আপনার কাছে পৌঁছায়।</p></div>
+      <div class="card"><h3>অ্যাপে শুধু রেকর্ড</h3><p style="margin:0">"Received", "I sent the refund", "Credit"-এর মতো বোতাম শুধু হিসাব লিখে রাখে। অ্যাপ নিজে কোনো টাকা সরায় না, আর BuyNow আপনাকে কোনো payout দেয় না।</p></div>
+    </div>
+    <div class="callout money" style="margin-top:12px"><strong class="t">আপনার বিক্রির হিসাব</strong>
+      <p>আয়ের রেকর্ড = পণ্যের দাম − কুপনের ছাড়। ডেলিভারি চার্জ এই হিসাবে ধরা হয় না, কারণ চার্জ Rider-এর।</p></div>
+  </section>
+
+  <section id="start">
+    <h2>২. স্টল চালু করার ধাপ</h2>
+    <ol class="steps">
+      <li><div><b>Google দিয়ে সাইন ইন করুন</b>বিনা সাইন-আপে ট্রায়াল চলে, কিন্তু ৩০ দিন পর স্টলের সব তথ্য নিজে থেকে মুছে যায়। আসল ব্যবসার জন্য Google অ্যাকাউন্ট যুক্ত করুন, তখন তথ্য থেকে যায়।</div></li>
+      <li><div><b>তিন ধাপে স্টলের তথ্য দিন</b>(১) স্টলের নাম, ক্যাটাগরি, পরিচিতি, বিভাগ-জেলা-উপজেলা, ঠিকানা, ফোন ও দোকানের GPS লোকেশন। (২) যাচাইয়ের মোবাইল নম্বর (<code>01[3-9]XXXXXXXX</code>) ও শর্তে সম্মতি। (৩) পর্যালোচনা করে জমা দিন।</div></li>
+      <li><div><b>KYC যাচাইয়ের অপেক্ষা</b>জমা দিলে অবস্থা হয় PENDING। যাচাই শেষ না হওয়া পর্যন্ত স্টল বন্ধ থাকে ও Orders পাতা লক থাকে, কিন্তু এই সময়ে পণ্য ও সেটিংস সাজিয়ে রাখা যায়।</div></li>
+      <li><div><b>বাতিল হলে</b>Admin-এর দেওয়া কারণ প্রোফাইলে দেখাবে। ভুল ঠিক করে সেভ করলে আবার PENDING হয়ে জমা যায়।</div></li>
+      <li><div><b>পেমেন্ট নম্বর দিন</b>Profile-এ bKash বা Nagad নম্বর দিন। অন্তত একটি না থাকলে গ্রাহক advance দিতে পারে না।</div></li>
+      <li><div><b>স্টল Open করুন</b>যাচাই শেষ হলে মেনু বা উপরের বার থেকে Open সুইচ চালু করুন। চাইলে নিয়মিত সময়সূচি দিয়ে নিজে থেকে খোলা-বন্ধ করাতে পারেন (§১১)।</div></li>
+    </ol>
+    <div class="callout info" style="margin-top:12px"><strong class="t">Advance চালু করার তিন শর্ত</strong>
+      <p>"Advance required" সুইচ তখনই চালু হয় যখন তিনটিই ঠিক থাকে: NID (KYC) অনুমোদিত, Google অ্যাকাউন্ট যুক্ত (ট্রায়াল স্টল নয়), এবং প্রোফাইলে স্টলের লোকেশন সেভ করা। একটি না থাকলে সুইচের নিচে কী বাকি আছে তা লেখা থাকে।</p></div>
+  </section>
+
+  <section id="products">
+    <h2>৩. পণ্য সাজানো</h2>
+    <p>ভালো ছবি, সঠিক দাম ও সঠিক স্টক গ্রাহকের আস্থা এনে দেয়।</p>
+    <h3>পণ্য যোগ করার সময় যা দেবেন</h3>
+    <ul>
+      <li><strong>নাম, দাম, স্টক, ক্যাটাগরি ও বিবরণ।</strong> দাম অবশ্যই শূন্যের বেশি হতে হবে। স্টল কখনো ঋণাত্মক স্টক রাখে না।</li>
+      <li><strong>বাংলা নাম</strong> (সর্বোচ্চ ৬০ অক্ষর, ঐচ্ছিক)। গ্রাহকের বাংলা সার্চে এটি মেলে।</li>
+      <li><strong>একক</strong> (পিস, কেজি, লিটার ইত্যাদি) ও <strong>variant</strong> (যেমন ৫০০ গ্রাম ও ১ কেজি, প্রতিটির নিজস্ব স্টক)।</li>
+      <li><strong>ছবি:</strong> "Choose photo" দিয়ে গ্যালারি থেকে নিন। ছবি ফোনেই ছোট হয়ে সরাসরি Cloudinary-তে যায়। প্রতি স্টল দিনে ৩০টি ছবি তুলতে পারে। লিংক লিখে ছবি দেওয়া যায় না।</li>
+      <li><strong>Prep minutes:</strong> প্যাক করতে কত মিনিট লাগে। Quick অর্ডারে এ থেকে dispatch-এর শেষ সময় ঠিক হয়।</li>
+    </ul>
+    <h3>সাত ধরনের পণ্য ও ডেলিভারি</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>পণ্যের ধরন</th><th>কীভাবে ডেলিভারি হয়</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Cooked Food</strong> (রান্না করা খাবার)</td><td>শুধু Rider (Quick) ডেলিভারি, আর শুধু আপনার Rider-সীমার ভেতরে। কুরিয়ার কখনো হয় না। এ কারণে সীমার বাইরের গ্রাহক এটি অর্ডার করতে পারে না। Advance বাধ্যতামূলক।</td></tr>
+        <tr><td>Normal Product, Dry Product, Dry Food, Food Grains, Cosmetics, Clothes</td><td>গ্রাহক Rider-সীমার ভেতরে হলে Rider (Quick), বাইরে হলে কুরিয়ার।</td></tr>
+      </tbody></table></div>
+    <h3>স্টক নিজে নিজে কীভাবে চলে</h3>
+    <ul>
+      <li>আপনি অর্ডার Accept করলে স্টক একবার কমে। পর্যাপ্ত স্টক না থাকলে Accept হয় না, কিছুই বদলায় না, আর অ্যাপ বলে কতটি আছে।</li>
+      <li>অর্ডার Reject, Cancel বা Return হলে স্টক ঠিক একবার ফেরত আসে।</li>
+      <li>সব বিক্রি হয়ে গেলে পণ্যে লাল "Out of stock" দেখায় এবং আপনি একটি নোটিফিকেশন পান।</li>
+      <li>স্টক ৩ বা কমে নামলে Dashboard-এ সতর্কতা আসে। সেখান থেকে এক ট্যাপে +১০ যোগ করা যায়।</li>
+      <li>প্রতিটি পণ্যের <strong>History</strong>-তে শেষ ৩০টি স্টক-পরিবর্তন (কখন, কেন, কত) দেখা যায়।</li>
+    </ul>
+  </section>
+
+  <section id="lifecycle">
+    <h2>৪. একটি অর্ডারের পূর্ণ পথ</h2>
+    <p>নতুন অর্ডার সবসময় আগে আপনার কাছে আসে। কোনো Rider নিজে থেকে বসানো হয় না, আপনি ঠিক করেন কীভাবে পাঠাবেন।</p>
+    <pre class="mermaid">
+flowchart TD
+  P(["PLACED: অর্ডার এলো"]) --> D{"আপনি কী করবেন?"}
+  D -- "২ ঘণ্টায় সাড়া নেই" --> X1(["স্বয়ংক্রিয় CANCELLED"])
+  D -- "Reject" --> X2(["REJECTED"])
+  D -- "Accept, advance লাগবে" --> AA["AWAITING_ADVANCE: গ্রাহকের ৩০ মিনিট"]
+  D -- "Accept, advance ছাড়া" --> C
+  AA -- "৩০ মিনিটে টাকা নেই" --> X3(["স্বয়ংক্রিয় CANCELLED"])
+  AA -- "গ্রাহক Skip করল (ঐচ্ছিক হলে)" --> C
+  AA -- "TrxID পাঠাল" --> AS["ADVANCE_SUBMITTED: আপনি bKash/Nagad মিলিয়ে দেখুন"]
+  AS -- "Received" --> C["CONFIRMED: স্টক কমে"]
+  AS -- "Not received" --> AR["ADVANCE_REJECTED: আরও ৩০ মিনিট"]
+  AR --> AS
+  C --> K["PACKED: প্যাক হলো"]
+  K --> M{"Delivery mode"}
+  M -- "QUICK" --> S["Call a rider: SHIPPED"]
+  M -- "COURIER" --> H["HANDED_TO_COURIER"]
+  S --> V(["DELIVERED"])
+  H --> V
+  H -- "কুরিয়ার ফেরত আনল" --> R(["RETURNED"])
+    </pre>
+    <div class="scroll" style="margin-top:12px"><table>
+      <thead><tr><th>অবস্থা</th><th>অর্থ</th><th>এরপর কে এগোবে</th></tr></thead>
+      <tbody>
+        <tr><td><code>PLACED</code></td><td>অর্ডার এসেছে, আপনার সিদ্ধান্ত বাকি</td><td>আপনি</td></tr>
+        <tr><td><code>AWAITING_ADVANCE</code></td><td>আপনি advance চেয়েছেন, গ্রাহকের ৩০ মিনিট</td><td>গ্রাহক</td></tr>
+        <tr><td><code>ADVANCE_SUBMITTED</code></td><td>গ্রাহক TrxID ও নম্বর পাঠিয়েছে</td><td>আপনি (টাকা মেলান)</td></tr>
+        <tr><td><code>ADVANCE_REJECTED</code></td><td>"পাইনি" বলেছেন, গ্রাহক আবার পাঠাবে</td><td>গ্রাহক</td></tr>
+        <tr><td><code>CONFIRMED</code></td><td>অর্ডার নিশ্চিত, স্টক কমেছে</td><td>আপনি (প্যাক)</td></tr>
+        <tr><td><code>PACKED</code></td><td>প্যাক শেষ, পাঠানোর অপেক্ষা</td><td>আপনি (Dispatch)</td></tr>
+        <tr><td><code>SHIPPED</code></td><td>Rider বা নিজের লোকের হাতে</td><td>গ্রাহক / স্বয়ংক্রিয়</td></tr>
+        <tr><td><code>HANDED_TO_COURIER</code></td><td>কুরিয়ারে দেওয়া হয়েছে</td><td>গ্রাহক / স্বয়ংক্রিয়</td></tr>
+        <tr><td><code>DELIVERED</code></td><td>পৌঁছেছে</td><td>শুধু গ্রাহক বা স্বয়ংক্রিয়, আপনি হাতে বসাতে পারেন না</td></tr>
+        <tr><td><code>REJECTED</code> / <code>CANCELLED</code> / <code>RETURNED</code></td><td>বাতিল বা ফেরত</td><td>আপনি / গ্রাহক / সিস্টেম</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">Orders পাতার ছয়টি ট্যাব: New Orders, With Rider, With Courier, Completed, Cancelled, Refund Requests। পাতা সবসময় New Orders থেকে খোলে। তালিকায় শেষ ৩০ দিনের এবং এখনো খোলা সব অর্ডার থাকে। পুরোনো অর্ডারের জন্য Order History-র "Load older orders" চাপুন।</p>
+  </section>
+
+  <section id="accept">
+    <h2>৫. নতুন অর্ডার Accept করা</h2>
+    <div class="callout ok"><strong class="t">নতুন অর্ডার ফেলে রাখবেন না</strong>
+      <p>অর্ডার এলে ঘণ্টা বাজে। Accept বা Reject না করা পর্যন্ত প্রতি মিনিটে আরও জোরে "N new orders are waiting" রিমাইন্ডার বাজে, সর্বোচ্চ ৩০ বার। ফোন ঘুমিয়ে থাকলে কয়েক মিনিট দেরি হতে পারে। আগাম অর্ডার (স্টল বন্ধ থাকাকালে করা, "Pre-order" চিহ্নিত) এর বাইরে।</p></div>
+    <p style="margin-top:12px">PLACED অর্ডারে আপনার সামনে কোন বোতাম আসবে তা advance-এর পরিকল্পনার ওপর নির্ভর করে:</p>
+    <div class="scroll"><table>
+      <thead><tr><th>অবস্থা</th><th>বোতাম ও ফল</th></tr></thead>
+      <tbody>
+        <tr><td>Advance বাধ্যতামূলক (অর্ডারে Cooked Food আছে)</td><td><strong>Accept &amp; ask ৳X advance</strong>। গ্রাহকের ৩০ মিনিট, না দিলে অর্ডার নিজে বাতিল।</td></tr>
+        <tr><td>Advance ঐচ্ছিক (শুধু সাধারণ পণ্য)</td><td>দুটি পথ: <strong>Ask for ৳X advance</strong> অথবা advance ছাড়া accept। দ্বিতীয়টিতে গ্রাহক পরে পার্সেল ফেরত দিলে ঝুঁকি আপনার।</td></tr>
+        <tr><td>Advance প্রযোজ্য নয়</td><td><strong>Accept &amp; Confirm</strong>। সরাসরি CONFIRMED।</td></tr>
+        <tr><td>সরবরাহ করতে পারবেন না</td><td><strong>Reject</strong> (প্যাক করার আগে পর্যন্ত যায়)।</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">গ্রাহক Advance Skip করলে আপনি নোটিফিকেশন পান এবং অর্ডার CONFIRMED হয়ে যায়। তখন সবটাই ডেলিভারির সময় নগদে আসবে। চাইলে তখনও "Cannot supply. Reject order" দিতে পারেন।</p>
+    <h3>ADVANCE_SUBMITTED হলে</h3>
+    <ol>
+      <li>গ্রাহকের পাঠানো TrxID, প্রেরকের নম্বর ও পরিমাণ দেখুন।</li>
+      <li>নিজের bKash/Nagad অ্যাপে টাকা এসেছে কিনা মিলিয়ে নিন।</li>
+      <li>এসে থাকলে <strong>Received</strong> চাপুন, অর্ডার CONFIRMED হয়। না এসে থাকলে <strong>Not received</strong>, গ্রাহক আরও ৩০ মিনিট পায়।</li>
+      <li>গ্রাহক চাইলে স্ক্রিনশট জুড়ে দিতে পারে। সেটি অর্ডারের বিবরণে "Payment proof" বোতামে দেখা যায়।</li>
+    </ol>
+    <div class="callout bad"><strong class="t">২ ঘণ্টার মধ্যে যাচাই করুন</strong>
+      <p>Advance-এর টাকা যাচাই না করে ২ ঘণ্টা ফেলে রাখলে refund আপনাকে দিতে হয়।</p></div>
+  </section>
+
+  <section id="advance">
+    <h2>৬. Advance (Down Payment) ও Refund</h2>
+    <h3>কত advance চাওয়া হয়</h3>
+    <ul>
+      <li><strong>Cooked Food থাকলে:</strong> বাধ্যতামূলক, শুধু রান্না করা খাবারের অংশের <strong>১০%</strong> (মিশ্র অর্ডারেও)। গ্রাহক এটি Skip করতে পারে না।</li>
+      <li><strong>শুধু সাধারণ পণ্য হলে:</strong> ঐচ্ছিক। আপনি চাইতে পারেন বা advance ছাড়া accept করতে পারেন।</li>
+    </ul>
+    <div class="callout money"><strong class="t">উদাহরণ</strong>
+      <p>অর্ডারে ৳৩০০-এর রান্না করা খাবার ও ৳২০০-এর শুকনো পণ্য আছে। Advance = ৳৩০০-এর ১০% = <span class="keep">৳৩০</span>। ৳৫০০-এর ওপর ১০% (৳৫০) নয়।</p></div>
+    <h3>কখন refund দিতে হবে</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>ঘটনা</th><th>Refund</th></tr></thead>
+      <tbody>
+        <tr><td>Advance আসার আগেই বাতিল</td><td>কিছু লাগে না</td></tr>
+        <tr><td>গ্রাহক advance দেওয়ার পর নিজে বাতিল করল</td><td><span class="pill">নেই</span> গ্রাহক ফেরত পায় না</td></tr>
+        <tr><td>আপনি Reject করলেন</td><td><span class="pill bad">বাধ্যতামূলক</span></td></tr>
+        <tr><td>আপনি dispatch-এ দেরি করলেন, গ্রাহক দেরির কারণে বাতিল করল</td><td><span class="pill bad">বাধ্যতামূলক</span></td></tr>
+        <tr><td>২ ঘণ্টায় advance যাচাই করেননি</td><td><span class="pill bad">বাধ্যতামূলক</span></td></tr>
+        <tr><td>কুরিয়ার পার্সেল ফেরত আনল</td><td>আপনি ও গ্রাহক নিজেরা মীমাংসা করবেন</td></tr>
+      </tbody></table></div>
+    <h3>Refund পাঠানোর ধাপ</h3>
+    <pre class="mermaid">
+flowchart LR
+  A["REQUESTED: Refund due ৳X"] --> B["আপনি গ্রাহকের bKash/Nagad-এ পাঠান<br/>I sent the refund + TrxID দিন"]
+  B --> C["SENT: গ্রাহকের নিশ্চিতের অপেক্ষা"]
+  C -- "গ্রাহক নিশ্চিত করল" --> D(["RECEIVED: সম্পন্ন"])
+  C -- "৭২ ঘণ্টা সাড়া নেই" --> D
+  C -- "গ্রাহক বলল পাইনি" --> E["DISPUTED"]
+  E --> B
+    </pre>
+    <p class="note" style="margin-top:8px">TrxID কমপক্ষে ৪ অক্ষর, বড় হাতের অক্ষরে সেভ হয়। ৪৮ ঘণ্টায় refund না পাঠালে গ্রাহক সাপোর্টে অভিযোগ করতে পারে, তাই দেরি করবেন না। Refund tracker শুধু তখনই চালু হয় যখন গ্রাহক সত্যিই advance দিয়েছে।</p>
+  </section>
+
+  <section id="dispatch">
+    <h2>৭. প্যাক করে পাঠানো (Dispatch)</h2>
+    <p>PACKED অর্ডারে <strong>Dispatch Order</strong> চাপুন। কী কী বিকল্প পাবেন তা অর্ডারের delivery mode ঠিক করে দেয়: গ্রাহক আপনার Quick সীমার (সর্বোচ্চ ১৫ কিমি) ভেতরে হলে QUICK, বাইরে হলে COURIER।</p>
+    <div class="grid">
+      <div class="card"><h3>QUICK: Call a rider</h3>
+        <ul>
+          <li>১০ মিনিটের জন্য একটি খোলা অনুরোধ পোস্ট হয়।</li>
+          <li>আপনার স্টলের ২ কিমির ভেতরের Online Rider-রা দেখে, <strong>যে আগে Accept করে সে পায়।</strong></li>
+          <li>কেউ অনলাইনে না থাকলে অ্যাপ আপনাকে জানায়। যেকোনো সময় বাতিল করে আবার ডাকতে পারেন।</li>
+          <li>Rider আপনাকে পণ্যের টাকা দিলে (§৮) তবেই পার্সেল Rider-কে দিবেন।</li>
+        </ul></div>
+      <div class="card"><h3>COURIER</h3>
+        <ul>
+          <li>কুরিয়ারের নাম (Pathao, Steadfast, RedX, Sundarban, SA Paribahan, Janani) ও consignment নম্বর।</li>
+          <li><strong>রসিদের ছবি বাধ্যতামূলক।</strong> একবার সেভ হলে আর বদলানো বা মোছা যায় না, বিরোধে এটি প্রমাণ।</li>
+          <li>সতর্কতা স্বীকার করতে হয়: ভুয়া রসিদ বা খালি পার্সেল দিলে স্টল Freeze হয় এবং আইনি ব্যবস্থা নেওয়া হয়।</li>
+        </ul></div>
+    </div>
+    <div class="callout info" style="margin-top:12px"><strong class="t">Dispatch-এর শেষ সময়</strong>
+      <p>Quick অর্ডারে নিশ্চিত করার পর ৪৫ থেকে ৩৬০ মিনিটের মধ্যে পাঠাতে হয় (আপনার Prep minutes থেকে হিসাব)। কুরিয়ার অর্ডারে ২ দিন (৪৮ ঘণ্টা)। সময় পেরোলে গ্রাহক বাতিল করে refund চাইতে পারে।</p></div>
+    <p style="margin-top:12px">Delivery <strong>Charge আপনি ঠিক করেন না</strong>। প্রতিটি উপজেলার চার্জ Admin ঠিক করেন, আর সেটি পুরোটা Rider পায়।</p>
+  </section>
+
+  <section id="rider">
+    <h2>৮. Rider-এর সঙ্গে টাকার নিয়ম</h2>
+    <p>Rider নিজের পকেট থেকে আপনাকে পণ্যের বাকি টাকা দেয়, তারপর গ্রাহকের কাছ থেকে সেই টাকা ও ডেলিভারি চার্জ আদায় করে। চার্জটুকু সে রাখে।</p>
+    <div class="callout money"><strong class="t">Rider-কে কত দিতে হবে</strong>
+      <p><code>riderCashDue = পণ্যের দাম − ছাড় − advance</code> (শুধু নগদ অর্ডারে, ডেলিভারি চার্জ বাদে)।</p></div>
+    <div class="scroll" style="margin-top:12px"><table>
+      <thead><tr><th>উদাহরণ (পণ্য ৳৪০০, চার্জ ৳৩০)</th><th class="num">Advance</th><th class="num">Rider আপনাকে দেবে</th><th class="num">আপনি মোট পাবেন</th></tr></thead>
+      <tbody>
+        <tr><td>নগদ, advance নেই</td><td class="num">৳০</td><td class="num">৳৪০০</td><td class="num keep">৳৪০০</td></tr>
+        <tr><td>নগদ, advance ৳১০০</td><td class="num">৳১০০</td><td class="num">৳৩০০</td><td class="num keep">৳৪০০</td></tr>
+        <tr><td>৳৫০ কুপন ছাড়, advance ৳১০০</td><td class="num">৳১০০</td><td class="num">৳২৫০</td><td class="num keep">৳৩৫০</td></tr>
+        <tr><td>Prepaid বা advance-এ পুরোটা কভার</td><td class="num">পুরো</td><td class="num">৳০</td><td class="num keep">পূর্ণ দাম</td></tr>
+      </tbody></table></div>
+    <pre class="mermaid" style="margin-top:12px">
+sequenceDiagram
+  participant C as গ্রাহক
+  participant R as Rider
+  participant V as আপনি (Vendor)
+  C->>V: Advance (bKash/Nagad)
+  R->>V: পিকআপে পণ্যের বাকি টাকা (নিজের নগদ)
+  V->>V: "I received ৳X cash from the rider" চাপুন
+  V->>R: পার্সেল হস্তান্তর (Parcel handed to rider)
+  R->>C: পার্সেল পৌঁছায়, OTP নেয়
+  C->>R: নগদ: বাকি দাম + ডেলিভারি চার্জ
+  Note over R: ডেলিভারি চার্জ Rider-এর
+    </pre>
+    <h3>ধাপে ধাপে করণীয়</h3>
+    <ol>
+      <li><strong>পিকআপে:</strong> Rider টাকা দিলে "I received ৳X cash from the rider" চাপুন, তারপর পার্সেল দিন। যতক্ষণ টাকা নিশ্চিত (বা credit) না হয়, Dispatch বোতাম ও Firestore নিয়ম দুটোই পার্সেল হস্তান্তর আটকে রাখে। কিছু বাকি না থাকলে কিছু আটকায় না।</li>
+      <li><strong>Credit:</strong> Rider-এর কাছে নগদ না থাকলে আপনি বাকিতে পার্সেল দিতে পারেন, <strong>কিন্তু শুধু গ্রাহক advance দিয়ে থাকলে।</strong> তখন পুরো ঝুঁকি আপনার। Advance না থাকলে Rider কাজটি ছেড়ে দেয় এবং পরের Rider পায়। Credit দিলে ডেলিভারির পর Rider টাকা দেবে, পেয়ে "The rider paid me" চাপুন।</li>
+      <li><strong>Failed delivery বা বাতিল:</strong> গ্রাহক না নিলে বা অর্ডার বাতিল হলে দায় আপনার। Rider যা দিয়েছিল তা এবং ডেলিভারি চার্জ ফেরত দিন, তারপর "I returned the rider's money" চাপুন।</li>
+      <li><strong>Rider কাজ ছেড়ে দিলে:</strong> পার্সেল স্টলে থাকলে ও কোনো টাকা লেনদেন না হলে Rider ছাড়তে পারে, অনুরোধ আবার ১০ মিনিটের জন্য খোলা হয়।</li>
+    </ol>
+    <p class="note">নিজের ডেলিভারি-লোক থাকলে তাকে বিশ্বাস করা হয়, তার জন্য এই নগদ-হিসাব ট্র্যাক হয় না।</p>
+  </section>
+
+  <section id="confirm">
+    <h2>৯. ডেলিভারি নিশ্চিত হওয়া</h2>
+    <p>আপনি কখনো নিজে "Delivered" বসাতে পারবেন না। অ্যাপ ও নিয়ম দুটোই তা আটকায়। শুধু গ্রাহক "Received" চাপলে, অথবা সময় পেরোলে নিজে থেকে নিশ্চিত হয়।</p>
+    <div class="scroll"><table>
+      <thead><tr><th>পাঠানোর ধরন</th><th class="num">নিজে থেকে নিশ্চিত হয়</th></tr></thead>
+      <tbody>
+        <tr><td>Quick (Rider)</td><td class="num">২৪ ঘণ্টা পর</td></tr>
+        <tr><td>অন্যান্য নিজের/Rider ডেলিভারি</td><td class="num">৪৮ ঘণ্টা পর</td></tr>
+        <tr><td>কুরিয়ার</td><td class="num">৭ দিন পর</td></tr>
+      </tbody></table></div>
+    <p style="margin-top:8px">গ্রাহক সমস্যা জানালে নিজে থেকে নিশ্চিত হওয়া থেমে যায় এবং সাপোর্ট আপনার সঙ্গে যোগাযোগ করে। কুরিয়ার পার্সেল ফেরত আনলে <strong>"Parcel was returned to me"</strong> চাপুন, অবস্থা RETURNED হয়, স্টক ফেরত আসে।</p>
+  </section>
+
+  <section id="returns">
+    <h2>১০. Return ও রিভিউ</h2>
+    <h3>Return অনুরোধ</h3>
+    <p>গ্রাহক Return চাইলে Returns পাতায় অনুরোধ আসে (সাইডবারে লাল সংখ্যা)। আপনি <strong>Approve</strong> বা <strong>Reject</strong> করেন। গ্রাহক সঙ্গে সঙ্গে নোটিফিকেশন পায়। "পণ্য ক্ষতিগ্রস্ত বা বর্ণনার সঙ্গে মেলে না" ধরনের অভিযোগে BuyNow-এর শর্ত আপনার নিজের Return নীতিকে দেখায়, তাই Profile-এ নীতি লিখে রাখুন।</p>
+    <h3>Return ও Shipping নীতি</h3>
+    <p>Profile > Return and shipping policy > Edit policies। দুটি লেখা, প্রতিটি ১০ থেকে ২০০ অক্ষর। "Use the suggested text" দিয়ে শুরু করা যায়। গ্রাহক এগুলো আপনার স্টল পাতায় দেখে।</p>
+    <h3>রিভিউর উত্তর</h3>
+    <ul>
+      <li>Reviews পাতায় স্টল ও পণ্যের সব রিভিউ থাকে। "Needs reply" ফিল্টারে উত্তর বাকিগুলো পাবেন।</li>
+      <li>প্রতিটি রিভিউতে <strong>একটি</strong> উত্তর, সর্বোচ্চ ৫০০ অক্ষর, ফাঁকা চলবে না। উত্তরটি সবার সামনে "Reply from the stall" নামে দেখায় এবং গ্রাহক নোটিফিকেশন পায়।</li>
+      <li>ভদ্রভাবে, দ্রুত ও সমাধান দিয়ে উত্তর দিন। খারাপ রিভিউর ভালো উত্তর নতুন গ্রাহককেও আস্থা দেয়।</li>
+      <li>পুরোনো কিছু পণ্য-রিভিউয়ে vendorId না থাকায় উত্তর দেওয়া যায় না।</li>
+    </ul>
+  </section>
+
+  <section id="growth">
+    <h2>১১. বিক্রি বাড়ানোর উপায়</h2>
+    <div class="grid">
+      <div class="card"><h3>কুপন</h3><ul>
+        <li>কোড (বড় হাতের অক্ষর ও সংখ্যা, সর্বোচ্চ ২০)।</li>
+        <li>ধরন: PERCENTAGE (সর্বোচ্চ ৯০%) বা FIXED।</li>
+        <li>ন্যূনতম খরচ ও মেয়াদ (১ থেকে ৩৬৫ দিন) দিন। FIXED ছাড় ন্যূনতম খরচের বেশি হতে পারে না।</li>
+        <li>চালু/বন্ধ সুইচ, আর All / Active / Off / Expired ফিল্টার।</li>
+      </ul></div>
+      <div class="card"><h3>Flash sale</h3><ul>
+        <li>পণ্য সম্পাদনায় "Run a sale": ছাড়ের দাম (স্বাভাবিকের কম) ও শেষ সময় (১ ঘণ্টা, ৩ ঘণ্টা, আজ রাত পর্যন্ত, ২৪ ঘণ্টা, ৩ দিন বা ৭ দিন, সর্বোচ্চ ৩০ দিন)।</li>
+        <li>কার্ডে -N% ব্যাজ, পুরোনো দাম কাটা, শেষ হওয়ার সময় দেখায়। "End sale" দিয়ে আগে শেষ করা যায়।</li>
+      </ul></div>
+      <div class="card"><h3>Share &amp; Offers (বিনা খরচে প্রচার)</h3><ul>
+        <li>স্টলের QR কোড: Print / save PDF করে দোকানের সামনে লাগান।</li>
+        <li>Share link দিয়ে WhatsApp বা Facebook-এ পাঠান।</li>
+        <li>অনুসারীদের দিনে একটি অফার: শিরোনাম ৩–৬০, বার্তা ৩–২০০ অক্ষর।</li>
+        <li>অনুসারী না থাকলে সেদিনের সুযোগ খরচ হয় না।</li>
+      </ul></div>
+      <div class="card"><h3>স্বয়ংক্রিয় খোলা-বন্ধ</h3><ul>
+        <li>Profile > Open / close schedule: দিন (শনি–শুক্র), খোলা ও বন্ধের সময় (বাংলাদেশ সময়)। বন্ধের সময় খোলার সময়ের আগে বা সমান হলে স্টল মধ্যরাতের পরে বন্ধ হয় (যেমন ২২:০০ থেকে ০২:০০)।</li>
+        <li>অ্যাপ খোলা থাকলে প্রতি ৩০ সেকেন্ডে, বন্ধ থাকলে সিস্টেম অ্যালার্মে প্রয়োগ হয়, তাই কয়েক মিনিট দেরি হতে পারে।</li>
+        <li>হাতে সুইচ দিলে পরের নির্ধারিত বদল পর্যন্ত আপনার সিদ্ধান্তই চলে।</li>
+      </ul></div>
+      <div class="card"><h3>পশু হাট (Cattle Market)</h3><ul>
+        <li>নিজের গরু, ছাগল, ভেড়া বা মহিষ বিজ্ঞাপন দিন। এটি শুধু বিজ্ঞাপন, কোনো কার্ট, অর্ডার বা ডেলিভারি নেই।</li>
+        <li>KYC যাচাই হওয়া ও Freeze নয় এমন স্টল পোস্ট করতে পারে। ১ থেকে ৫টি ছবি, প্রথমটি কভার।</li>
+        <li>বিক্রি হলে "sold" চিহ্নিত করুন।</li>
+      </ul></div>
+      <div class="card"><h3>Visit Requests (ঠিকানার গোপনীয়তা)</h3><ul>
+        <li>গ্রাহক আপনার স্টল বা পশুর সঠিক লোকেশন চাইলে আপনার কাছে অনুরোধ আসে। আপনি Location পাঠান বা Decline করেন।</li>
+        <li>লোকেশন ২৪ ঘণ্টা দেখা যায়। Decline করলে ৫ ঘণ্টা পর আবার চাইতে পারে।</li>
+        <li>বিরক্ত করা ভিজিটরকে Block করা যায়।</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section id="reports">
+    <h2>১২. রিপোর্ট ও স্টক নজরদারি</h2>
+    <div class="grid">
+      <div class="card"><h3>Dashboard</h3><ul>
+        <li>সাপ্তাহিক বিক্রি, অপেক্ষায় থাকা অর্ডার ও রেটিং।</li>
+        <li>৭ দিনের বিক্রির বার-চার্ট।</li>
+        <li>সর্বাধিক বিক্রিত ৩টি পণ্য (শুধু Delivered অর্ডার থেকে)।</li>
+        <li>কম-স্টকের সতর্কতা ও এক ট্যাপে +১০।</li>
+      </ul></div>
+      <div class="card"><h3>Report: Monthly ও Weekly</h3><ul>
+        <li><strong>Weekly:</strong> শেষ হওয়া সপ্তাহ (শনিবার থেকে শুক্রবার), সর্বোচ্চ ৮টি। বিক্রি (পণ্যের দাম, ডেলিভারি চার্জ ছাড়া), ডেলিভারি চার্জ, গড় অর্ডার, বন্ধ করা, delivered, rejected/cancelled/returned, অর্ডার-হওয়া দিন ও সেরা পণ্য।</li>
+        <li>Share দিয়ে সাদা লেখা হিসেবে WhatsApp বা SMS-এ পাঠান। এটি আপনার নিজের খাতার রেকর্ড।</li>
+      </ul></div>
+      <div class="card"><h3>Order Summary ও History</h3><ul>
+        <li>তারিখ-প্রিসেট (আজ, গতকাল, ৭ দিন, ৩০ দিন, কাস্টম), সাজানো, সার্চ (অর্ডার নম্বর, নাম, ফোন, পণ্য)।</li>
+        <li>মোট অর্ডার, গড় মূল্য, রাজস্ব ও active/delivered সংখ্যা।</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section id="timers">
+    <h2>১৩. সময়সীমার তালিকা</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>কী</th><th class="num">সময়</th><th>না মানলে কী হয়</th></tr></thead>
+      <tbody>
+        <tr><td>নতুন অর্ডারে সাড়া দেওয়া</td><td class="num">২ খোলা ঘণ্টা</td><td>নিজে বাতিল (রাত ১০টা–সকাল ৭টা ও স্টল বন্ধের সময় গোনা হয় না), আপনার দায়। Pre-order বাদ।</td></tr>
+        <tr><td>গ্রাহকের advance দেওয়া</td><td class="num">৩০ মিনিট</td><td>অর্ডার বাতিল, স্টক ফেরত, দায় গ্রাহকের।</td></tr>
+        <tr><td>"Not received"-এর পর পুনরায় পাঠানো</td><td class="num">আরও ৩০ মিনিট</td><td>অর্ডার বাতিল।</td></tr>
+        <tr><td>Advance-এর টাকা যাচাই</td><td class="num">২ ঘণ্টা</td><td>Refund আপনার দায়।</td></tr>
+        <tr><td>Quick dispatch</td><td class="num">৪৫–৩৬০ মিনিট</td><td>গ্রাহক বাতিল করে refund চাইতে পারে।</td></tr>
+        <tr><td>কুরিয়ার dispatch</td><td class="num">২ দিন</td><td>একই।</td></tr>
+        <tr><td>Rider-এর জন্য অনুরোধ খোলা থাকা</td><td class="num">১০ মিনিট</td><td>বাতিল করে আবার ডাকুন।</td></tr>
+        <tr><td>Refund পাঠানো</td><td class="num">৪৮ ঘণ্টা</td><td>গ্রাহক সাপোর্টে অভিযোগ করতে পারে।</td></tr>
+        <tr><td>Refund পাঠানোর পর গ্রাহকের সাড়া</td><td class="num">৭২ ঘণ্টা</td><td>নিজে থেকে RECEIVED।</td></tr>
+        <tr><td>নিজে থেকে Delivered</td><td class="num">২৪ ঘ / ৪৮ ঘ / ৭ দিন</td><td>Quick / অন্য / কুরিয়ার, আর গ্রাহক সমস্যা না জানালে।</td></tr>
+        <tr><td>Location ভিজিট অনুরোধের উত্তর</td><td class="num">১২ ঘণ্টা</td><td>অনুরোধ মেয়াদোত্তীর্ণ।</td></tr>
+        <tr><td>ট্রায়াল অ্যাকাউন্ট</td><td class="num">৩০ দিন</td><td>সব তথ্য নিজে মুছে যায়।</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section id="status">
+    <h2>১৪. অ্যাকাউন্টের অবস্থা</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>অবস্থা</th><th>কী ঘটে</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill warn">KYC PENDING</span></td><td>স্টল খোলা যায় না, Orders লক। পণ্য ও সেটিংস সাজানো যায়।</td></tr>
+        <tr><td><span class="pill">KYC VERIFIED</span></td><td>Open সুইচ কাজ করে, অর্ডার আসে।</td></tr>
+        <tr><td><span class="pill bad">KYC REJECTED</span></td><td>কারণ দেখায়। ঠিক করে সেভ করলে আবার PENDING।</td></tr>
+        <tr><td><span class="pill bad">FROZEN</span></td><td>"Your stall is on hold" পর্দা (কারণসহ ও ইমেইল সাপোর্ট বোতাম)। গ্রাহক স্টল দেখে না। Admin তুলে নিলে অ্যাপ নিজে খুলে যায় ও আপনি "unfrozen" বার্তা পান।</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">KYC অবস্থা, account অবস্থা ও account tier শুধু Admin বদলাতে পারে। অনুমোদিত, সক্রিয় স্টল সবসময় গ্রাহকের কাছে দেখা যায়।</p>
+  </section>
+
+  <section id="rules">
+    <h2>১৫. যা করবেন ও যা করবেন না</h2>
+    <div class="grid">
+      <div class="callout ok"><strong class="t">করবেন</strong><ul>
+        <li>নতুন অর্ডারে দ্রুত সাড়া দিন।</li>
+        <li>স্টক সবসময় সঠিক রাখুন।</li>
+        <li>Advance এলে bKash/Nagad অ্যাপে মিলিয়ে তবেই "Received" দিন।</li>
+        <li>Rider-এর টাকা পেলে সঙ্গে সঙ্গে "received" চিহ্নিত করুন।</li>
+        <li>Refund সময়মতো ও সঠিক TrxID-সহ পাঠান।</li>
+        <li>পণ্য ভালোভাবে প্যাক করুন। Cooked Food গরম ও সময়মতো পাঠান।</li>
+        <li>ফোনে অ্যাপ খোলা রাখুন, নোটিফিকেশন অনুমতি দিন।</li>
+      </ul></div>
+      <div class="callout bad"><strong class="t">করবেন না</strong><ul>
+        <li>ভুয়া কুরিয়ার রসিদ বা খালি পার্সেল দেওয়া। স্টল Freeze হয় ও আইনি ব্যবস্থা হয়।</li>
+        <li>টাকা না মিলিয়ে "Received" চাপা।</li>
+        <li>স্টক নেই জেনেও Accept করা।</li>
+        <li>গ্রাহকের ফোন বা ঠিকানা অন্য কাউকে দেওয়া।</li>
+        <li>advance পাওয়ার পর অর্ডার Reject করে refund আটকে রাখা।</li>
+        <li>অন্য কারও ছবি বা লোগো দিয়ে পণ্য দেখানো।</li>
+              </ul></div>
+    </div>
+    <div class="callout info" style="margin-top:12px"><strong class="t">গ্রাহকের তথ্য</strong>
+      <p>অর্ডারে ফোন বা ঠিকানা না থাকলে অ্যাপ বানিয়ে কিছু দেখায় না, "No phone number provided" দেখায়। গ্রাহকের ঠিকানা শুধু ডেলিভারির কাজে ব্যবহার করুন।</p></div>
+  </section>
+
+  <section id="help">
+    <h2>১৬. সমস্যা হলে কী করবেন</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>সমস্যা</th><th>করণীয়</th></tr></thead>
+      <tbody>
+        <tr><td>Advance সুইচ চালু হচ্ছে না</td><td>সুইচের নিচের লেখা দেখুন: NID অনুমোদন, Google সংযোগ বা স্টল লোকেশন, কোনটি বাকি।</td></tr>
+        <tr><td>Accept করলে "Not enough stock"</td><td>পণ্যের স্টক বাড়ান, অথবা পণ্য ডিলিট হয়ে থাকলে অর্ডারটি Reject করুন।</td></tr>
+        <tr><td>কেউ Rider নিচ্ছে না</td><td>আপনার উপজেলায় কেউ অনলাইন নেই কিনা অ্যাপের বার্তা দেখুন। বাতিল করে আবার ডাকুন, অথবা নিজের লোক পাঠান।</td></tr>
+        <tr><td>Rider পণ্যের টাকা দিতে পারছে না</td><td>গ্রাহক advance দিয়ে থাকলে credit দিতে পারেন (ঝুঁকি আপনার)। নইলে Rider কাজ ছেড়ে দেবে, পরের Rider আসবে।</td></tr>
+        <tr><td>অ্যাপ ধীর বা আটকে আছে</td><td>Profile-এর "Check connection" চাপুন। সার্ভার জাগতে এক মিনিট পর্যন্ত লাগতে পারে।</td></tr>
+        <tr><td>Freeze বা KYC নিয়ে সমস্যা</td><td>পর্দার সাপোর্ট বোতাম বা ইমেইলে Admin-কে জানান।</td></tr>
+      </tbody></table></div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+<script>
+(function(){
+  var dark=false;
+  try{var t=document.documentElement.dataset.theme;dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}
+  if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:dark?'dark':'default',securityLevel:'strict',flowchart:{htmlLabels:true}});}
+})();
+</script>
+</body>
+</html>

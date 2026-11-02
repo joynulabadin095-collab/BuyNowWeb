@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Rider আয়ের গাইড</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow column of numbered-by-meaning sections; money is shown as flows, tables and a step chart. */
+:root{
+  --bg:#f6f7f4; --surface:#ffffff; --ink:#16231f; --soft:#52625c; --line:#d9dfda;
+  --brand:#0f6b52; --brand-weak:#dcefe8; --money:#b45a00; --money-weak:#fbe9d2;
+  --bad:#b3261e; --bad-weak:#f9dedb;
+  --font:'Hind Siliguri','Noto Sans Bengali','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1714; --surface:#16231f; --ink:#e8f0ec; --soft:#9db0a8; --line:#2b3d37;
+  --brand:#4fc9a2; --brand-weak:#183a30; --money:#f0a24a; --money-weak:#3a2a14;
+  --bad:#ff8a80; --bad-weak:#3d1f1c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1714; --surface:#16231f; --ink:#e8f0ec; --soft:#9db0a8; --line:#2b3d37;
+  --brand:#4fc9a2; --brand-weak:#183a30; --money:#f0a24a; --money-weak:#3a2a14;
+  --bad:#ff8a80; --bad-weak:#3d1f1c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;margin:0;
+  padding-block:24px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+h1{font-size:30px;line-height:1.25;margin:0 0 8px;text-wrap:balance}
+h2{font-size:21px;line-height:1.35;margin:0 0 10px;text-wrap:balance}
+p{margin:0 0 10px;max-width:65ch}
+.lead{color:var(--soft);font-size:17px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);font-weight:700;margin-bottom:6px}
+.formula{background:var(--money-weak);border:1px solid var(--money);border-radius:10px;padding:16px 18px;font-size:20px;font-weight:700;color:var(--ink)}
+.formula small{display:block;font-weight:400;font-size:14px;color:var(--soft);margin-top:4px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:480px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+th{font-size:13px;color:var(--soft);font-weight:600;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+.keep{color:var(--money);font-weight:700}
+.note{font-size:14px;color:var(--soft)}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;background:var(--brand-weak);color:var(--brand)}
+.pill.bad{background:var(--bad-weak);color:var(--bad)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.grid .card{min-width:0}
+.card h3{margin:0 0 6px;font-size:16px}
+.card ul{margin:0;padding-left:18px}
+.card li{margin-bottom:4px}
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:560px;height:auto}
+.diagram text{font-family:var(--font);fill:var(--ink)}
+.diagram .soft{fill:var(--soft)}
+pre.mermaid{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+</style>
+</head>
+<body>
+<main>
+  <p class="note"><a href="index.html">&larr; BuyNow</a></p>
+  <header>
+    <div class="eyebrow">BuyNow Rides · Rider নির্দেশিকা</div>
+    <h1>Rider হিসেবে আপনি কীভাবে আয় করবেন</h1>
+    <p class="lead">প্রতিটি সফল ডেলিভারিতে আপনি ডেলিভারি চার্জ পান। পণ্যের দাম আপনার আয় নয়। এই পাতায় আছে কাজের ধাপ, টাকার হিসাব, আয় বাড়ানোর উপায় এবং যা মানতে হবে।</p>
+  </header>
+
+  <section>
+    <h2>আয়ের মূল নিয়ম</h2>
+    <div class="formula">আপনার আয় = ডেলিভারি চার্জ (shippingFee)
+      <small>পণ্যের দাম, ছাড় বা advance আপনার আয়ে যোগ হয় না। আপনি শুধু চার্জটুকু রাখেন।</small></div>
+    <p style="margin-top:12px">ডেলিভারি চার্জ Admin প্রতিটি উপজেলার জন্য ঠিক করেন। আলাদা মান না থাকলে ডিফল্ট <strong>৳৩০</strong>। Quick অর্ডারে দূরত্ব বেশি হলে গ্রাহক বাড়তি কিমি-চার্জও দেন, সেটাও চার্জের ভেতরেই থাকে।</p>
+    <div class="scroll"><table>
+      <thead><tr><th>উদাহরণ (Admin-এর ডিফল্ট: ৫ কিমি ফ্রি, তারপর কিমি প্রতি ৳৬)</th><th class="num">বাড়তি কিমি</th><th class="num">চার্জ = আপনার আয়</th></tr></thead>
+      <tbody>
+        <tr><td>৪ কিমি দূরের অর্ডার</td><td class="num">০</td><td class="num keep">৳৩০</td></tr>
+        <tr><td>৫ কিমি দূরের অর্ডার</td><td class="num">০</td><td class="num keep">৳৩০</td></tr>
+        <tr><td>৭.২ কিমি দূরের অর্ডার (২.২ কিমি পূর্ণ ধরে ৩ কিমি)</td><td class="num">৩</td><td class="num keep">৳৩০ + ১৮ = ৳৪৮</td></tr>
+        <tr><td>১০ কিমি দূরের অর্ডার</td><td class="num">৫</td><td class="num keep">৳৩০ + ৩০ = ৳৬০</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">টাকার অঙ্ক উদাহরণ। আপনার উপজেলার আসল চার্জ প্রতিটি অর্ডার কার্ডে "earning" হিসেবে দেখা যায়। Accept করার আগে সেটি দেখে নিন।</p>
+  </section>
+
+  <section>
+    <h2>একটি ডেলিভারির ধাপ</h2>
+    <p>অনলাইন হওয়ার পর থেকে আয় জমা হওয়া পর্যন্ত পুরো পথ:</p>
+    <pre class="mermaid">
+flowchart TD
+  A([১. HOME লোকেশন সেট করুন]) --> B([২. Online করুন])
+  B --> C{নতুন অর্ডার এলো?}
+  C -- না --> C2[স্টলের ২ কিমি এলাকার ভেতরে থাকুন<br/>লোকেশন আপডেট করুন]
+  C2 --> C
+  C -- হ্যাঁ --> D[কার্ডে চার্জ ও দূরত্ব দেখুন]
+  D --> E{Accept করবেন?}
+  E -- না --> E2[Decline]
+  E2 --> C
+  E -- হ্যাঁ --> F[স্টলে যান]
+  F --> G{পণ্যের টাকা বাকি আছে?}
+  G -- হ্যাঁ --> H[নিজের নগদ থেকে স্টলকে দিন<br/>I Paid Vendor চাপুন]
+  G -- না --> I
+  H --> I[স্টল Parcel handed to rider চাপলে নিন]
+  I --> J[গ্রাহকের কাছে যান]
+  J --> K{গ্রাহক নিলেন?}
+  K -- হ্যাঁ --> L[গ্রাহকের ৬ সংখ্যার OTP দিন<br/>চাইলে ছবি তুলুন]
+  L --> M[নগদ থাকলে গ্রাহকের কাছ থেকে নিন<br/>চার্জ রেখে বাকিটা স্টলের]
+  M --> N([ডেলিভারি সম্পন্ন: আয় জমা])
+  K -- না --> O[Report failed delivery<br/>পার্সেল ফেরত দিন]
+  O --> P([স্টল আপনার টাকা ও চার্জ ফেরত দেবে])
+    </pre>
+    <p class="note" style="margin-top:8px">Pickup (ক্রেতা নিজে এসে নেয়) অর্ডার Rider পায় না। শুধু Quick ডেলিভারির অর্ডার আসে।</p>
+  </section>
+
+  <section>
+    <h2>টাকা কোথা দিয়ে যায়</h2>
+    <p>নগদ (Cash) অর্ডারে পণ্যের টাকা আপনার হাত দিয়ে ঘুরে স্টলে ফিরে যায়। আপনার থাকে শুধু চার্জ।</p>
+    <div class="diagram">
+      <svg viewBox="0 0 640 250" role="img" aria-label="নগদ অর্ডারে টাকার প্রবাহ: Rider স্টলকে পণ্যের টাকা দেয়, গ্রাহকের কাছ থেকে পণ্য ও চার্জ নেয়, চার্জ রাখে।">
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--soft)"/></marker></defs>
+        <rect x="10" y="90" width="150" height="70" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+        <text x="85" y="122" text-anchor="middle" font-size="18" font-weight="700">স্টল</text>
+        <text x="85" y="144" text-anchor="middle" font-size="13" class="soft">(Vendor)</text>
+        <rect x="245" y="90" width="150" height="70" rx="10" fill="var(--brand-weak)" stroke="var(--brand)"/>
+        <text x="320" y="122" text-anchor="middle" font-size="18" font-weight="700">আপনি</text>
+        <text x="320" y="144" text-anchor="middle" font-size="13" class="soft">(Rider)</text>
+        <rect x="480" y="90" width="150" height="70" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+        <text x="555" y="122" text-anchor="middle" font-size="18" font-weight="700">গ্রাহক</text>
+        <text x="555" y="144" text-anchor="middle" font-size="13" class="soft">(Customer)</text>
+        <line x1="245" y1="112" x2="165" y2="112" stroke="var(--soft)" stroke-width="2" marker-end="url(#ar)"/>
+        <text x="205" y="80" text-anchor="middle" font-size="13">১. পণ্যের টাকা</text>
+        <text x="205" y="97" text-anchor="middle" font-size="12" class="soft">পিকআপে দেন</text>
+        <line x1="165" y1="140" x2="245" y2="140" stroke="var(--soft)" stroke-width="2" marker-end="url(#ar)"/>
+        <text x="205" y="162" text-anchor="middle" font-size="13">২. পার্সেল</text>
+        <line x1="395" y1="140" x2="475" y2="140" stroke="var(--soft)" stroke-width="2" marker-end="url(#ar)"/>
+        <text x="435" y="162" text-anchor="middle" font-size="13">৩. পার্সেল + OTP</text>
+        <line x1="475" y1="112" x2="400" y2="112" stroke="var(--money)" stroke-width="3" marker-end="url(#ar)"/>
+        <text x="437" y="80" text-anchor="middle" font-size="13" font-weight="700">৪. পণ্য + চার্জ</text>
+        <text x="437" y="97" text-anchor="middle" font-size="12" class="soft">নগদ নেন</text>
+        <rect x="215" y="195" width="210" height="44" rx="10" fill="var(--money-weak)" stroke="var(--money)"/>
+        <text x="320" y="214" text-anchor="middle" font-size="14" font-weight="700">৫. চার্জটুকু আপনার</text>
+        <text x="320" y="231" text-anchor="middle" font-size="12" class="soft">বাকিটা স্টলের প্রাপ্য</text>
+        <line x1="320" y1="162" x2="320" y2="192" stroke="var(--money)" stroke-width="2" marker-end="url(#ar)"/>
+      </svg>
+    </div>
+    <p class="note" style="margin-top:8px">Prepaid অর্ডারে (আগেই পুরো টাকা দেওয়া) পিকআপে কিছু দিতে হয় না এবং গ্রাহকের কাছ থেকেও কিছু নিতে হয় না। আপনি শুধু ডেলিভারি করেন।</p>
+  </section>
+
+  <section>
+    <h2>তিন ধরনের অর্ডারে হিসাব</h2>
+    <p>ধরুন পণ্যের দাম ৳৪০০, ডেলিভারি চার্জ ৳৩০, ছাড় নেই:</p>
+    <div class="scroll"><table>
+      <thead><tr><th>অর্ডারের ধরন</th><th class="num">স্টলকে দেবেন</th><th class="num">গ্রাহকের কাছে নেবেন</th><th class="num">আপনার আয়</th></tr></thead>
+      <tbody>
+        <tr><td>নগদ, advance নেই</td><td class="num">৳৪০০</td><td class="num">৳৪৩০</td><td class="num keep">৳৩০</td></tr>
+        <tr><td>নগদ, গ্রাহক ৳১০০ advance দিয়েছেন</td><td class="num">৳৩০০</td><td class="num">৳৩৩০</td><td class="num keep">৳৩০</td></tr>
+        <tr><td>Prepaid (পুরো টাকা অ্যাপে দেওয়া)</td><td class="num">৳০</td><td class="num">৳০</td><td class="num keep">৳৩০</td></tr>
+      </tbody></table></div>
+    <div class="grid" style="margin-top:12px">
+      <div class="card"><h3>স্টল credit দিলে</h3><p style="margin:0">advance পাওয়া অর্ডারে স্টল চাইলে পার্সেল বাকিতে দিতে পারে। তখন ডেলিভারির পর পণ্যের টাকা আপনি স্টলকে দেবেন। অর্ডারের "Cash flow" কার্ডে এই অঙ্ক দেখা যায়।</p></div>
+      <div class="card"><h3>আয় কোথায় দেখবেন</h3><p style="margin:0">Earnings ও Payouts পাতায় আজকের, এই সপ্তাহের (শনিবার থেকে) ও মোট আয়, Pending payout এবং প্রতিটি ডেলিভারির আয়ের তালিকা আছে।</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>দিনে কত আয় হতে পারে</h2>
+    <p>আয় নির্ভর করে আপনি দিনে কয়টি ডেলিভারি করেন তার ওপর। নিচের হিসাব শুধু গুণ করে দেখানো, কোনো আয়ের নিশ্চয়তা নয়।</p>
+    <div class="scroll"><table>
+      <thead><tr><th>দিনে ডেলিভারি</th><th class="num">গড় চার্জ ৳৩০</th><th class="num">গড় চার্জ ৳৪০</th><th class="num">গড় চার্জ ৳৫০</th></tr></thead>
+      <tbody>
+        <tr><td>৫টি</td><td class="num">৳১৫০</td><td class="num">৳২০০</td><td class="num">৳২৫০</td></tr>
+        <tr><td>১০টি</td><td class="num">৳৩০০</td><td class="num">৳৪০০</td><td class="num">৳৫০০</td></tr>
+        <tr><td>১৫টি</td><td class="num">৳৪৫০</td><td class="num">৳৬০০</td><td class="num">৳৭৫০</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">জ্বালানি, ফোনের ডেটা ও বাহনের খরচ এই অঙ্ক থেকে আপনার নিজের বাদ দিতে হবে।</p>
+  </section>
+
+  <section>
+    <h2>আয় বাড়ানোর উপায়</h2>
+    <div class="grid">
+      <div class="card"><h3>সঠিক জায়গায় থাকুন</h3><ul><li>HOME লোকেশন ব্যস্ত বাজারের কাছে রাখুন। এটি একবার সেট করলে ৩০ দিন বদলানো যায় না।</li><li>অর্ডার আসে স্টলের ২ কিমি এলাকার ভেতরে থাকা Rider-এর কাছে।</li></ul></div>
+      <div class="card"><h3>লোকেশন আপডেট রাখুন</h3><ul><li>"Update my location" চালু রাখুন। পুরোনো লোকেশনে অর্ডার নেওয়া যায় না।</li><li>অনলাইন থাকলে অ্যাপ খোলা ও GPS চালু রাখুন।</li></ul></div>
+      <div class="card"><h3>দ্রুত Accept করুন</h3><ul><li>Open request ১০ মিনিট খোলা থাকে। আগে যিনি Accept করেন, কাজ তাঁর।</li><li>নোটিফিকেশন এলে অ্যাপ খুলে সরাসরি Accept চাপুন।</li></ul></div>
+      <div class="card"><h3>রেটিং ভালো রাখুন</h3><ul><li>সময়মতো পৌঁছান, ভদ্রভাবে কথা বলুন, পার্সেল সাবধানে দিন।</li><li>ভালো রেটিং আপনাকে গ্রাহক ও স্টলের আস্থা এনে দেয়।</li></ul></div>
+      <div class="card"><h3>চার্জ বাড়ানোর অনুরোধ</h3><ul><li>Delivery Charge পাতা থেকে উপজেলার চার্জ বাড়াতে অনুরোধ করা যায়, সর্বোচ্চ ৳৫০ পর্যন্ত বাড়ানো যায়।</li><li>গ্রাহকেরা নাম প্রকাশ না করে মত দেন। Admin শেষ সিদ্ধান্ত নেন।</li></ul></div>
+      <div class="card"><h3>দূরের অর্ডারে বাড়তি আয়</h3><ul><li>Quick অর্ডারে বেশি কিমি মানে বেশি চার্জ। কার্ডে দেখে নিন পথ ও আয় পোষাচ্ছে কিনা।</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Online থাকার সময়সীমা</h2>
+    <p>Online থাকলে ৬ ঘণ্টা পর অ্যাপ আপনাকে নিজে থেকে Offline করে দেয়। উপরের বারে বাকি সময় দেখা যায় (যেমন <strong>ONLINE · ৫h ৪২m</strong>), শেষ ১৫ মিনিটে লেখা লাল হয়। চাইলে যেকোনো সময় নিজেও Offline হতে পারেন এবং আবার Online হলে নতুন ৬ ঘণ্টা শুরু হয়।</p>
+  </section>
+
+  <section>
+    <h2>যা করা যাবে না</h2>
+    <div class="grid">
+      <div class="card"><span class="pill bad">নিষেধ</span><ul style="margin-top:8px"><li>গ্রাহকের OTP চাওয়া বা অন্য কারও কাছে বলা।</li><li>পণ্যের টাকা নিজের কাছে রেখে দেওয়া।</li><li>ভুয়া ডেলিভারি দেখানো।</li></ul></div>
+      <div class="card"><span class="pill bad">শাস্তি</span><ul style="margin-top:8px"><li>Admin অ্যাকাউন্ট Freeze বা বাতিল করতে পারেন।</li><li>৫ বার ভুল OTP দিলে অর্ডার ৩০ মিনিট লক হয়।</li></ul></div>
+      <div class="card"><span class="pill">নিরাপদ নিয়ম</span><ul style="margin-top:8px"><li>গ্রাহক নিতে না চাইলে অথবা টাকা দিতে না পারলে "Report failed delivery" চাপুন। পার্সেল ফেরত দিলে স্টল আপনার টাকা ও চার্জ ফেরত দেয়।</li><li>স্টল পার্সেল না দেওয়া পর্যন্ত বা টাকা নিশ্চিত না করা পর্যন্ত অ্যাপ পরের ধাপে যেতে দেয় না।</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>দ্রুত মনে রাখুন</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>পরিস্থিতি</th><th>কী করবেন</th></tr></thead>
+      <tbody>
+        <tr><td>অর্ডার নিয়ে মন বদলালো</td><td>স্টল পার্সেল দেওয়ার আগে এবং আপনি টাকা দেওয়ার আগে "Give the job back" চাপুন। অর্ডার আবার ১০ মিনিটের জন্য খুলে যায়।</td></tr>
+        <tr><td>সার্ভার ধীর বা অ্যাপ আটকে আছে</td><td>Profile-এর "Check connection" চাপুন। Server জাগতে এক মিনিট পর্যন্ত লাগতে পারে।</td></tr>
+        <tr><td>জরুরি বিপদ</td><td>মেনুর SOS ব্যবহার করুন।</td></tr>
+        <tr><td>সমস্যা বা প্রশ্ন</td><td>মেনুর Support থেকে জানান।</td></tr>
+      </tbody></table></div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+<script>
+(function(){
+  var dark=false;
+  try{var t=document.documentElement.dataset.theme;dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}
+  if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:dark?'dark':'default',securityLevel:'strict',flowchart:{htmlLabels:true}});}
+})();
+</script>
+</body>
+</html>

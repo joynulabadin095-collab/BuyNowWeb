@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>BuyNow কেনাকাটার গাইড</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: sticky contents strip, then one narrow column of sections; flows are diagrams, rules are tables. */
+:root{
+  --bg:#f6f7f4; --surface:#ffffff; --ink:#16231f; --soft:#52625c; --line:#d9dfda;
+  --brand:#0f6b52; --brand-weak:#dcefe8; --money:#b45a00; --money-weak:#fbe9d2;
+  --bad:#b3261e; --bad-weak:#f9dedb; --info:#1d5fa8; --info-weak:#dde9f6;
+  --font:'Hind Siliguri','Noto Sans Bengali','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1714; --surface:#16231f; --ink:#e8f0ec; --soft:#9db0a8; --line:#2b3d37;
+  --brand:#4fc9a2; --brand-weak:#183a30; --money:#f0a24a; --money-weak:#3a2a14;
+  --bad:#ff8a80; --bad-weak:#3d1f1c; --info:#8ab8ee; --info-weak:#17283d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1714; --surface:#16231f; --ink:#e8f0ec; --soft:#9db0a8; --line:#2b3d37;
+  --brand:#4fc9a2; --brand-weak:#183a30; --money:#f0a24a; --money-weak:#3a2a14;
+  --bad:#ff8a80; --bad-weak:#3d1f1c; --info:#8ab8ee; --info-weak:#17283d; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;margin:0;
+  padding-block:24px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1{font-size:30px;line-height:1.25;margin:0 0 8px;text-wrap:balance}
+h2{font-size:22px;line-height:1.35;margin:0 0 10px;text-wrap:balance;scroll-margin-top:16px}
+h3{font-size:17px;margin:14px 0 6px}
+p{margin:0 0 10px;max-width:68ch}
+ul,ol{margin:0 0 10px;padding-left:22px}
+li{margin-bottom:5px}
+.lead{color:var(--soft);font-size:17px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);font-weight:700;margin-bottom:6px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.toc a{font-size:13px;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:3px 10px;border-radius:99px}
+.toc a:hover,.toc a:focus-visible{border-color:var(--brand);color:var(--brand)}
+.callout{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
+.callout.money{background:var(--money-weak);border-color:var(--money)}
+.callout.ok{background:var(--brand-weak);border-color:var(--brand)}
+.callout.bad{background:var(--bad-weak);border-color:var(--bad)}
+.callout.info{background:var(--info-weak);border-color:var(--info)}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.callout strong.t{display:block;margin-bottom:4px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+th{font-size:13px;color:var(--soft);font-weight:600;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+.keep{color:var(--money);font-weight:700}
+code{font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 5px}
+.note{font-size:14px;color:var(--soft)}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;background:var(--brand-weak);color:var(--brand);white-space:nowrap}
+.pill.bad{background:var(--bad-weak);color:var(--bad)}
+.pill.warn{background:var(--money-weak);color:var(--money)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.card h3{margin:0 0 6px;font-size:16px}
+.card ul{margin:0}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0}
+.steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--brand-weak);color:var(--brand);font-weight:700;font-size:14px;display:grid;place-items:center}
+.steps b{display:block}
+pre.mermaid{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+</style>
+</head>
+<body>
+<main>
+  <p class="note"><a href="index.html">&larr; BuyNow</a></p>
+  <header>
+    <div class="eyebrow">BuyNow অ্যাপ · গ্রাহক নির্দেশিকা</div>
+    <h1>BuyNow-তে নিরাপদে কেনাকাটার পূর্ণ গাইড</h1>
+    <p class="lead">স্টল খোঁজা, ঝুড়ি ও অর্ডার, advance ও ডেলিভারি, পার্সেল হাতে পাওয়া, ফেরত ও refund। কখন কী করতে হবে আর কোন টাকা কোথায় যায়, সব এখানে।</p>
+    <nav class="toc" aria-label="সূচি">
+      <a href="#start">১. শুরু</a><a href="#browse">২. স্টল খোঁজা</a><a href="#order">৩. অর্ডার দেওয়া</a><a href="#delivery">৪. ডেলিভারির ধরন</a>
+      <a href="#advance">৫. Advance</a><a href="#path">৬. অর্ডারের পথ</a><a href="#receive">৭. পার্সেল পাওয়া</a><a href="#pickup">৮. Pickup</a>
+      <a href="#cancel">৯. বাতিল ও Refund</a><a href="#returns">১০. Return ও রিভিউ</a><a href="#extras">১১. আরও সুবিধা</a><a href="#safe">১২. নিরাপত্তা</a>
+      <a href="#timers">১৩. সময়সীমা</a><a href="#help">১৪. সমস্যা হলে</a>
+    </nav>
+  </header>
+
+  <section id="start">
+    <h2>১. শুরু করা</h2>
+    <div class="grid">
+      <div class="card"><h3>Google দিয়ে সাইন ইন</h3><ul>
+        <li>সবচেয়ে ভালো পথ। অ্যাকাউন্ট স্থায়ী থাকে।</li>
+        <li>পশু হাটের লাইক, কমেন্ট, সেভ এবং স্টল বা পশুর সঠিক লোকেশন চাওয়া শুধু Google অ্যাকাউন্টে চলে।</li>
+      </ul></div>
+      <div class="card"><h3>Guest হিসেবে চালানো</h3><ul>
+        <li>সাইন-আপ ছাড়াই অ্যাপ ব্যবহার করা যায়, মেয়াদ ৩০ দিন।</li>
+        <li>প্রোফাইলে বাকি দিন দেখায়, ২৫ দিনের দিন একটি রিমাইন্ডার আসে।</li>
+        <li>পরে Google যুক্ত করলে তথ্য থেকে যায়। সেই Google অ্যাকাউন্ট আগেই অন্য BuyNow অ্যাকাউন্টের হলে অ্যাপ জানায়, তখন সেটি দিয়েই সাইন ইন করুন।</li>
+      </ul></div>
+    </div>
+    <h3>প্রোফাইলে যা ঠিক রাখুন</h3>
+    <ul>
+      <li>নাম, ফোন, ঠিকানা এবং <strong>GPS লোকেশন (pin)</strong>। প্রতিটি অর্ডারে GPS pin লাগে।</li>
+      <li>ভাষা: English বা বাংলা (মেনুর Appearance অংশে)। বদলালে অ্যাপ একবার নতুন করে চালু হয়।</li>
+      <li>থিম: Fresh Night (গাঢ়), Produce Daylight (হালকা) বা System Default।</li>
+      <li>নোটিফিকেশন পছন্দ: অর্ডারের খবর, দাম কমার সতর্কতা, স্টলের অফার ও ঘোষণা।</li>
+    </ul>
+  </section>
+
+  <section id="browse">
+    <h2>২. স্টল ও পণ্য খোঁজা</h2>
+    <ul>
+      <li><strong>এলাকা:</strong> উপজেলা, জেলা বা সারা দেশ বেছে নিন। উপজেলায় ৫টির কম চালু স্টল থাকলে অ্যাপ নিজে জেলায় বাড়িয়ে দেখায় এবং তা জানায়।</li>
+      <li><strong>দূরত্ব ফিল্টার:</strong> GPS জানা থাকলে সবচেয়ে কাছের স্টল আগে আসে।</li>
+      <li><strong>সার্চ ও ফিল্টার:</strong> নাম (বাংলা নামেও মেলে), ক্যাটাগরি, স্টল, সর্বোচ্চ দাম, ন্যূনতম রেটিং, ডেলিভারির সময় ও দূরত্ব।</li>
+      <li><strong>স্টলের চিহ্ন:</strong> "Closed · Pre-order" মানে স্টল এখন বন্ধ, অর্ডার করলে সেটি Pre-order হয় এবং স্টল খুললে সাড়া দেবে। "Unverified" মানে স্টলের KYC যাচাই হয়নি।</li>
+      <li><strong>পণ্যের ধরন:</strong> Normal, Dry Product, Dry Food, Cooked Food, Food Grains, Cosmetics, Clothes। Variant (যেমন ওজন বা সাইজ) থাকলে আগে একটি বেছে নিন।</li>
+      <li>পণ্য পাতায় এক অর্ডারে সর্বোচ্চ ২০টি বা মজুদের কম সংখ্যাটি নেওয়া যায়।</li>
+    </ul>
+    <div class="callout info"><strong class="t">Unverified স্টলে ঝুঁকি বেশি</strong>
+      <p>যাচাই না হওয়া স্টলে advance চাওয়া হয় না, সবটাই ডেলিভারির সময় নগদে দিতে হয়। অর্ডারের আগে স্টলের রেটিং ও রিভিউ দেখে নিন।</p></div>
+  </section>
+
+  <section id="order">
+    <h2>৩. ঝুড়ি থেকে অর্ডার দেওয়া</h2>
+    <ol class="steps">
+      <li><div><b>ঝুড়িতে পণ্য রাখুন</b>পণ্য স্টল অনুযায়ী আলাদা দলে ভাগ হয়। প্রতিটি দলে নিজস্ব ডেলিভারির ধরন, চার্জ, advance, কুপন ও সময় দেখায়।</div></li>
+      <li><div><b>ন্যূনতম অর্ডার ৳১০০</b>প্রতিটি স্টলের জন্য, কুপনের ছাড়ের আগের পণ্যের দামে। কম হলে কোন স্টলে কম আছে তা অ্যাপ বলে দেয়।</div></li>
+      <li><div><b>কুপন দিন (ঐচ্ছিক)</b>কুপন শুধু সেই স্টলের দলে চলে। ন্যূনতম খরচ না ছুঁলে অ্যাপ বলে "Add ৳X more to use this coupon"।</div></li>
+      <li><div><b>একবারে একটি স্টলের Checkout</b>অন্য স্টলের ঝুড়ি যেমন আছে তেমনই থাকে।</div></li>
+      <li><div><b>প্রাপকের তথ্য দিন</b>নাম, ঠিকানা, ফোন, এবং চাইলে বিক্রেতার জন্য ২০০ অক্ষরের মধ্যে নোট। এটি সাজাতে "Saved address" (সর্বোচ্চ ৩টি) এক ট্যাপে সব ভরে দেয় এবং ডেলিভারি চার্জ ও ডেলিভারির ধরনও সেই ঠিকানা ধরে ঠিক হয়।</div></li>
+      <li><div><b>GPS pin নিশ্চিত করুন</b>এটি বাধ্যতামূলক। প্রোফাইলের pin থেকে শুরু হয়, Checkout-এ নতুন করে নেওয়া যায়।</div></li>
+      <li><div><b>পছন্দের ডেলিভারি সময়</b>যেকোনো সময়, সকাল, দুপুর বা সন্ধ্যা। এটি অনুরোধ, প্রতিশ্রুতি নয়।</div></li>
+      <li><div><b>অর্ডার দিন</b>এই মুহূর্তে কোনো টাকা দিতে হয় না। অর্ডার স্টলের কাছে PLACED হয়ে যায়।</div></li>
+    </ol>
+    <div class="callout money" style="margin-top:12px"><strong class="t">টাকা দেওয়ার একমাত্র পদ্ধতি</strong>
+      <p>অ্যাপে অনলাইন পেমেন্ট নেই। পেমেন্ট হলো <strong>Cash on Delivery</strong>। শুধু advance লাগলে তা bKash বা Nagad-এ সরাসরি স্টলের নম্বরে পাঠাতে হয়।</p></div>
+    <div class="scroll" style="margin-top:12px"><table>
+      <thead><tr><th>হিসাব</th><th>সূত্র</th></tr></thead>
+      <tbody>
+        <tr><td>স্টলের মোট</td><td>পণ্যের দাম − কুপনের ছাড় + ডেলিভারি চার্জ</td></tr>
+        <tr><td>ডেলিভারির সময় নগদে দেবেন</td><td>মোট − advance</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">নিজের স্টল থেকে অর্ডার বা নিজের স্টল-পণ্যে রিভিউ দেওয়া যায় না।</p>
+  </section>
+
+  <section id="delivery">
+    <h2>৪. ডেলিভারির ধরন ও চার্জ</h2>
+    <p>ডেলিভারির ধরন আপনি বাছেন না, অ্যাপ আপনার GPS pin ও স্টলের মধ্যে সরলরেখার দূরত্ব দেখে ঠিক করে। শুধু যেসব স্টলে Pickup চালু আছে, সেখানে আপনি "আমি নিজে নিয়ে নেব" বেছে নিতে পারেন (§৮)।</p>
+    <div class="scroll"><table>
+      <thead><tr><th>অবস্থা</th><th>ফল</th></tr></thead>
+      <tbody>
+        <tr><td>আপনি স্টলের Quick সীমার ভেতরে (স্টল ঠিক করে, ডিফল্ট ৫ কিমি, সর্বোচ্চ ১৫ কিমি)</td><td><span class="pill">QUICK</span> Rider বা স্টলের নিজের ডেলিভারি</td></tr>
+        <tr><td>সীমার বাইরে, রান্না করা খাবার নেই</td><td><span class="pill warn">COURIER</span></td></tr>
+        <tr><td>সীমার বাইরে, রান্না করা খাবার আছে</td><td><span class="pill bad">অর্ডার করা যায় না</span> (Pickup চালু থাকলে নিজে নিয়ে নিতে পারেন)</td></tr>
+        <tr><td>GPS অজানা, রান্না করা খাবার আছে</td><td>Profile-এ লোকেশন দিতে বলা হয়</td></tr>
+      </tbody></table></div>
+    <h3>ডেলিভারি চার্জ</h3>
+    <ul>
+      <li>চার্জ Admin ঠিক করেন, স্টল নয়। আলাদা মান না থাকলে ডিফল্ট <strong>৳৩০</strong>।</li>
+      <li>Quick অর্ডারে দূরত্ব বেশি হলে বাড়তি কিমির চার্জ যোগ হয়। ডিফল্টে ৫ কিমি ফ্রি, তারপর কিমি প্রতি ৳৬। যেমন ৭.২ কিমিতে ৩ কিমি ধরে ৳৩০ + ৳১৮ = ৳৪৮। আপনার এলাকার আসল চার্জ Checkout-এ দেখায়।</li>
+      <li>Pickup-এ কোনো ডেলিভারি চার্জ নেই।</li>
+      <li>এলাকার চার্জ বাড়াতে চাইলে Rider অনুরোধ করে। তখন আপনার উপজেলার গ্রাহক হিসেবে Home-এ Yes / No মতামতের কার্ড আসতে পারে, যেখানে আগে ডেলিভারি পেয়েছেন এমন গ্রাহকরাই ভোট দিতে পারেন। ভোট বেনামী। Admin শেষ সিদ্ধান্ত নেন।</li>
+    </ul>
+    <h3>স্টল কতক্ষণে পাঠাবে</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>ধরন</th><th>স্টলের সময়</th></tr></thead>
+      <tbody>
+        <tr><td>Quick</td><td>সবচেয়ে বেশি প্রস্তুতির সময় + ৩০ মিনিট, ৪৫ থেকে ৩৬০ মিনিটের মধ্যে</td></tr>
+        <tr><td>Courier</td><td>৪৮ ঘণ্টা</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">সময় শুরু হয় স্টল অর্ডার নিশ্চিত করার পর থেকে। স্টল দেরি করলে আপনি বাতিল করে advance ফেরত চাইতে পারেন (§৯)।</p>
+  </section>
+
+  <section id="advance">
+    <h2>৫. Advance (Down Payment)</h2>
+    <p>Advance স্টলকে অর্ডারের ওপর আস্থা দেয়। এটি কুপনের পরের পণ্যের দামের ওপর হিসাব হয়, ডেলিভারি চার্জ বাদে। বাকি টাকা ডেলিভারির সময় নগদে।</p>
+    <pre class="mermaid">
+sequenceDiagram
+  participant C as আপনি
+  participant V as স্টল
+  C->>V: অর্ডার দিলেন (PLACED), কোনো টাকা নয়
+  V->>C: Accept করে advance চাইল (৩০ মিনিট)
+  C->>V: bKash/Nagad-এ স্টলের নম্বরে Send Money
+  C->>V: TrxID ও প্রেরকের নম্বর অ্যাপে দিলেন
+  V->>V: নিজের অ্যাপে টাকা মিলিয়ে দেখল
+  V->>C: Received: অর্ডার CONFIRMED
+  Note over C,V: Not received হলে আরও ৩০ মিনিট
+    </pre>
+    <h3>কত advance লাগে</h3>
+    <div class="scroll" style="margin-top:8px"><table>
+      <thead><tr><th>অবস্থা</th><th>Advance</th><th>বাদ দেওয়া যায়?</th></tr></thead>
+      <tbody>
+        <tr><td>অর্ডারে <strong>রান্না করা খাবার</strong> আছে</td><td>শুধু রান্না করা খাবারের অংশের ১০%</td><td><span class="pill bad">না</span></td></tr>
+        <tr><td>সাধারণ পণ্য, ৳৫০০-এর কম</td><td>২০%, ন্যূনতম ৳২০</td><td><span class="pill">হ্যাঁ</span></td></tr>
+        <tr><td>সাধারণ পণ্য, ৳৫০০ থেকে ৳২০০০</td><td>নির্দিষ্ট ৳১০০</td><td><span class="pill">হ্যাঁ</span></td></tr>
+        <tr><td>সাধারণ পণ্য, ৳২০০০-এর বেশি</td><td>১০%</td><td><span class="pill">হ্যাঁ</span></td></tr>
+        <tr><td>স্টল advance চায় না, বা স্টল Unverified</td><td>৳০</td><td>প্রযোজ্য নয়</td></tr>
+      </tbody></table></div>
+    <div class="callout money" style="margin-top:12px"><strong class="t">উদাহরণ</strong>
+      <p>পণ্য ৳১০০ → advance ৳২০। ৳২৫০ → ৳৫০। ৳৪৯৯ → ৳১০০। ৳২০০১ → ৳২০১।</p></div>
+    <h3>কীভাবে পাঠাবেন</h3>
+    <ol>
+      <li>অর্ডারে advance-এর পর্দায় স্টলের bKash ও Nagad নম্বর দেখায়, পাশে কপি বোতাম আছে।</li>
+      <li>নিজের bKash/Nagad অ্যাপ থেকে <strong>Send Money</strong> দিয়ে ঠিক ওই নম্বরে টাকা পাঠান।</li>
+      <li>অ্যাপে <strong>TrxID</strong> (৬ থেকে ২০ অক্ষর, শুধু অক্ষর ও সংখ্যা) ও <strong>প্রেরকের নম্বর</strong> (১১ সংখ্যা, 01[3-9]XXXXXXXX) দিন।</li>
+      <li>চাইলে পেমেন্টের স্ক্রিনশট জুড়ে দিন। স্টল সেটি দেখে মিলিয়ে নিতে পারে।</li>
+      <li>স্টল টাকা না পেলে "Not received" বলে, তখন আপনি আরও ৩০ মিনিট পান।</li>
+    </ol>
+    <h3>Advance না দিতে চাইলে</h3>
+    <p>সাধারণ পণ্যে <strong>"Continue without down payment"</strong> চাপলে অর্ডার advance ছাড়াই নিশ্চিত হয়, সবটাই ডেলিভারির সময় নগদে। স্টল তখন জানতে পারে। রান্না করা খাবারে এই সুযোগ নেই।</p>
+    <div class="callout bad"><strong class="t">৩০ মিনিট পেরোলে</strong>
+      <p>৩০ মিনিটে advance না দিলে অর্ডার নিজে বাতিল হয় এবং এটি আপনার একটি "স্ট্রাইক" হিসেবে গণ্য হয় (§১২)।</p></div>
+  </section>
+
+  <section id="path">
+    <h2>৬. আপনার অর্ডারের পথ</h2>
+    <pre class="mermaid">
+flowchart TD
+  A(["PLACED: অর্ডার গেল"]) --> B{"স্টল কী করল?"}
+  B -- "২ ঘণ্টায় সাড়া নেই" --> X1(["স্বয়ংক্রিয় বাতিল, কিছু দেননি"])
+  B -- "Reject" --> X2(["REJECTED"])
+  B -- "Accept + advance চাইল" --> AA["AWAITING_ADVANCE: ৩০ মিনিট"]
+  B -- "Accept, advance নেই" --> C
+  AA -- "টাকা দিলেন" --> AS["ADVANCE_SUBMITTED: স্টল মিলাচ্ছে"]
+  AA -- "Skip করলেন (ঐচ্ছিক হলে)" --> C
+  AA -- "৩০ মিনিটে দেননি" --> X3(["স্বয়ংক্রিয় বাতিল"])
+  AS -- "Received" --> C["CONFIRMED"]
+  AS -- "Not received" --> AR["ADVANCE_REJECTED: আরও ৩০ মিনিট"]
+  AR --> AS
+  C --> K["PACKED: প্যাক হলো"]
+  K --> S["SHIPPED: Rider বা স্টলের লোকের হাতে"]
+  K --> H["HANDED_TO_COURIER"]
+  S --> D(["DELIVERED"])
+  H --> D
+    </pre>
+    <div class="scroll" style="margin-top:12px"><table>
+      <thead><tr><th>অবস্থা</th><th>অর্থ</th></tr></thead>
+      <tbody>
+        <tr><td><code>PLACED</code></td><td>অর্ডার স্টলের কাছে গেছে, এখনো কিছু দেননি</td></tr>
+        <tr><td><code>AWAITING_ADVANCE</code></td><td>স্টল advance চেয়েছে, আপনার ৩০ মিনিট</td></tr>
+        <tr><td><code>ADVANCE_SUBMITTED</code></td><td>TrxID পাঠিয়েছেন, স্টল যাচাই করছে</td></tr>
+        <tr><td><code>ADVANCE_REJECTED</code></td><td>স্টল টাকা পায়নি, আরও ৩০ মিনিটে আবার পাঠান</td></tr>
+        <tr><td><code>CONFIRMED</code></td><td>স্টল নিশ্চিত করেছে, পাঠানোর সময় গোনা শুরু</td></tr>
+        <tr><td><code>PACKED</code></td><td>প্যাক হয়ে প্রস্তুত</td></tr>
+        <tr><td><code>SHIPPED</code></td><td>পথে (Rider বা স্টলের নিজের ডেলিভারি)</td></tr>
+        <tr><td><code>HANDED_TO_COURIER</code></td><td>কুরিয়ারে দেওয়া হয়েছে, কুরিয়ারের নাম ও consignment নম্বর দেখায়</td></tr>
+        <tr><td><code>DELIVERED</code></td><td>পৌঁছে গেছে</td></tr>
+        <tr><td><code>REJECTED</code> / <code>CANCELLED</code> / <code>RETURNED</code></td><td>স্টল ফিরিয়ে দিয়েছে / বাতিল / কুরিয়ার পার্সেল ফেরত এনেছে</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">অর্ডার তালিকায় All, In Progress, Delivered ফিল্টার আছে। আগের অর্ডার আবার দিতে "Buy again" চাপুন। প্রতিটি পণ্য জীবন্ত মজুদের সঙ্গে মিলিয়ে দেখা হয়: মজুদ না থাকলে বাদ যায়, কম থাকলে সংখ্যা কমে, দাম বদলালে জানানো হয়। অন্তত একটি পণ্য ঢুকলে ঝুড়ি খোলে।</p>
+  </section>
+
+  <section id="receive">
+    <h2>৭. পার্সেল হাতে পাওয়া</h2>
+    <h3>Rider-এর ডেলিভারি</h3>
+    <ol class="steps">
+      <li><div><b>পথে থাকাকালে</b>অর্ডারে Rider-এর নাম, বাহন ও কল বোতাম দেখায়। ডেলিভারির পর নাম ও বাহন থাকে, নম্বর লুকিয়ে যায়।</div></li>
+      <li><div><b>পার্সেল হাতে নিন ও দেখে নিন</b>প্যাকেট ঠিক আছে কিনা দেখুন।</div></li>
+      <li><div><b>নগদ দিন</b>বাকি পণ্যের টাকা ও ডেলিভারি চার্জ Rider-কে দিন। অ্যাপের "pay on delivery" অঙ্কের সঙ্গে মিলিয়ে নিন।</div></li>
+      <li><div><b>তারপর OTP বলুন</b>অ্যাপে আপনার ৬ সংখ্যার OTP দেখায়। পার্সেল হাতে পেয়ে ও টাকা দেওয়ার পরেই কেবল Rider-কে সেটি বলুন।</div></li>
+      <li><div><b>Rider-কে রেটিং দিন</b>১ থেকে ৫ তারা ও সর্বোচ্চ ৩টি ট্যাগ। প্রতি পার্সেলে একবারই, বদলানো যায় না।</div></li>
+    </ol>
+    <div class="callout bad" style="margin-top:12px"><strong class="t">OTP কখনো আগে বলবেন না</strong>
+      <p>পার্সেল না পেয়ে বা টাকা না দিয়ে OTP বললে ডেলিভারি সম্পন্ন ধরা হয়। Rider-কে ৫ বার ভুল OTP দিলে অর্ডার ৩০ মিনিট লক হয়, তখনও আপনি অ্যাপে "I received it" চাপতে পারেন।</p></div>
+    <h3>নিজে নিশ্চিত করা ও স্বয়ংক্রিয় নিশ্চিতকরণ</h3>
+    <ul>
+      <li>পার্সেল পেলে অর্ডারে <strong>"I received it"</strong> চাপুন। শুধু আপনিই হাতে Delivered করতে পারেন।</li>
+      <li>সমস্যা না জানালে সময় পেরোলে অর্ডার নিজে থেকে Delivered ধরা হয় (সাধারণত Quick ২৪ ঘণ্টা, অন্য নিজের ডেলিভারি ৪৮ ঘণ্টা, কুরিয়ার ৭ দিন)।</li>
+      <li>পার্সেলে সমস্যা থাকলে <strong>"Report a problem"</strong> চাপুন। তাতে স্বয়ংক্রিয় নিশ্চিতকরণ থেমে যায় এবং টিম বিষয়টি দেখে।</li>
+    </ul>
+  </section>
+
+  <section id="pickup">
+    <h2>৮. Pickup: নিজে গিয়ে নিয়ে আসা</h2>
+    <p>যেসব স্টলে Pickup চালু আছে, Checkout-এ সেই স্টলের জন্য "আমি নিজে নিয়ে নেব" বাছতে পারেন। Rider, কুরিয়ার ও ডেলিভারি চার্জ লাগে না। দূরের স্টলের রান্না করা খাবারও এভাবে নেওয়া যায়।</p>
+    <pre class="mermaid">
+flowchart LR
+  A["Checkout: আমি নিজে নিয়ে নেব"] --> B["স্টল Accept করল<br/>স্টলের সঠিক ঠিকানা ও ফোন খোলে"]
+  B --> C["PACKED: নিয়ে যাওয়ার জন্য প্রস্তুত<br/>আপনি পুশ পান"]
+  C --> D["স্টলে গিয়ে অর্ডার খুলুন<br/>৬ সংখ্যার কোড দেখুন"]
+  D --> E["স্টলকে কোড দিন"]
+  E --> F(["সংগ্রহ করা হয়েছে"])
+    </pre>
+    <ul style="margin-top:12px">
+      <li>স্টল নিশ্চিত করার পর অর্ডার শেষ না হওয়া পর্যন্ত আপনি "Open in map" ও "Call" দেখতে পারেন।</li>
+      <li>কোড শুধু স্টলে পৌঁছে দেখান। স্টল সেটি টাইপ করলে অর্ডার "Collected" হয়। কোড না চললে "I collected it" বোতামও আছে।</li>
+      <li>Advance-এর নিয়ম আগের মতোই। রান্না করা খাবারে ১০% advance বাধ্যতামূলক।</li>
+      <li>একই Checkout-এ একটি স্টলে ডেলিভারি আর অন্যটিতে Pickup মিলিয়ে নেওয়া যায়।</li>
+    </ul>
+    <div class="callout bad"><strong class="t">না গেলে</strong>
+      <p>প্রস্তুত হওয়ার পর ২৪ ঘণ্টার (রান্না করা খাবারে ৩ ঘণ্টার) মধ্যে না নিলে স্টল অর্ডার বাতিল করতে পারে। এটি আপনার স্ট্রাইক হয়, আর advance স্টলের কাছেই থেকে যায়।</p></div>
+  </section>
+
+  <section id="cancel">
+    <h2>৯. বাতিল ও Refund</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>পরিস্থিতি</th><th>আপনি কী করবেন</th><th>Refund</th></tr></thead>
+      <tbody>
+        <tr><td>কিছু দেওয়ার আগে</td><td>Cancel</td><td>লাগে না</td></tr>
+        <tr><td>advance দিয়েছেন, স্টল নিশ্চিত করার আগে</td><td>Cancel</td><td><span class="pill bad">কোনো refund নেই</span></td></tr>
+        <tr><td>advance পাঠিয়েছেন, স্টল ২ ঘণ্টায় যাচাই করেনি</td><td>"Cancel and request refund"</td><td><span class="pill">স্টল দিতে বাধ্য</span></td></tr>
+        <tr><td>স্টল নিশ্চিত করেও পাঠানোর সময় মিস করল</td><td>"Cancel order and request advance refund"</td><td><span class="pill">স্টল দিতে বাধ্য</span></td></tr>
+        <tr><td>advance নেওয়ার পর স্টল Reject করল</td><td>কিছু না</td><td><span class="pill">স্টল দিতে বাধ্য</span></td></tr>
+        <tr><td>স্টল ২ ঘণ্টায় Accept করেনি</td><td>কিছু না, নিজে বাতিল</td><td>কিছু দেননি</td></tr>
+        <tr><td>৩০ মিনিটে advance দেননি</td><td>নিজে বাতিল</td><td>কিছু দেননি, আপনার স্ট্রাইক</td></tr>
+      </tbody></table></div>
+    <h3>Refund কীভাবে ফিরে আসে</h3>
+    <pre class="mermaid">
+flowchart LR
+  A["REQUESTED: স্টল refund পাঠাবে"] --> B["স্টল টাকা পাঠিয়ে refund-এর TrxID দিল"]
+  B --> C["SENT: আপনার নিশ্চিতের অপেক্ষা"]
+  C -- "আপনি নিশ্চিত করলেন" --> D(["RECEIVED: সম্পন্ন"])
+  C -- "৭২ ঘণ্টা সাড়া নেই" --> D
+  C -- "টাকা আসেনি" --> E["DISPUTED: আপনি রিপোর্ট করলেন"]
+  E --> B
+    </pre>
+    <ul style="margin-top:12px">
+      <li>মেনুর <strong>Refunds</strong> পাতায় refund আছে এমন সব অর্ডার ও তার ধাপ দেখায়। স্টল refund পাঠালে ফোনে নোটিফিকেশন আসে।</li>
+      <li>টাকা না এলে "Not received" চাপুন। অথবা ৪৮ ঘণ্টা কেটে গেলেও refund REQUESTED-ই থাকলে রিপোর্ট করা যায়। এটি Admin-এর কাছে যায় (REFUND_NOT_RECEIVED)।</li>
+      <li>কুরিয়ার পার্সেল ফেরত আনলে advance-এর মীমাংসা আপনি আর স্টল নিজেরা করেন।</li>
+    </ul>
+  </section>
+
+  <section id="returns">
+    <h2>১০. Return, রিভিউ ও Wishlist</h2>
+    <h3>পণ্য ফেরত (Return)</h3>
+    <ul>
+      <li>শুধু <strong>Delivered</strong> অর্ডারে, পৌঁছানোর <strong>৭ দিনের</strong> মধ্যে।</li>
+      <li>প্রতিটি পণ্যে একবার। অপেক্ষমাণ বা অনুমোদিত অনুরোধ থাকলে আবার করা যায় না।</li>
+      <li>কারণ কমপক্ষে ১০ অক্ষর। স্টল Approve বা Reject করে, অবস্থা আপনি দেখতে পান।</li>
+      <li>"ক্ষতিগ্রস্ত বা বর্ণনার সঙ্গে মেলে না" ধরনের অভিযোগে স্টলের নিজের Return নীতি দেখুন, যা স্টলের পাতায় আছে।</li>
+    </ul>
+    <h3>রিভিউ</h3>
+    <ul>
+      <li>পণ্য ও স্টল দুটিতেই রিভিউ ও রেটিং দেওয়া যায়। স্টলের উত্তর "Reply from the stall" নামে নিচে দেখায়।</li>
+      <li><strong>শুধু যিনি সেই স্টল থেকে অর্ডার পেয়েছেন</strong> তিনিই রিভিউ দিতে পারেন (verified purchase)। অন্য কেউ দিলে সার্ভার ফিরিয়ে দেয়।</li>
+      <li>Delivered অর্ডার থাকলে "Add photos" দিয়ে সর্বোচ্চ ৩টি ছবি দেওয়া যায়। ছবি ফোনেই ছোট হয়ে সরাসরি আপলোড হয়।</li>
+    </ul>
+    <h3>Wishlist</h3>
+    <p>পণ্য কার্ডের হৃদয় চিহ্ন চাপুন। সেভের দিনের দাম মনে থাকে, পরে দাম কমলে "price drop" চিহ্ন দেখায় (শুধু অ্যাপের ভেতরে, পুশ নয়)।</p>
+  </section>
+
+  <section id="extras">
+    <h2>১১. আরও কাজের সুবিধা</h2>
+    <div class="grid">
+      <div class="card"><h3>স্টল অনুসরণ (Follow)</h3><p style="margin:0">স্টলের পাতা থেকে Follow করুন। স্টল দিনে সর্বোচ্চ একটি অফারের পুশ পাঠাতে পারে। নোটিফিকেশন পছন্দে অফার বন্ধ রাখা যায়।</p></div>
+      <div class="card"><h3>QR স্ক্যান ও শেয়ার</h3><p style="margin:0">মেনুর "Scan stall QR" দিয়ে দোকানের QR স্ক্যান করুন (ক্যামেরার অনুমতি লাগে না)। স্টল বা পণ্য পাতা থেকে WhatsApp, Facebook-এ শেয়ার করা যায়। "Share App" দিয়ে বন্ধুকে অ্যাপের লিংক পাঠান।</p></div>
+      <div class="card"><h3>আমাদের অন্য অ্যাপ</h3><p style="margin:0">About ও মেনুতে SellNow (নিজের পণ্য বিক্রি) ও Rider অ্যাপের লিংক আছে। দোকান থাকলে বিক্রি করুন, আয় করতে চাইলে ডেলিভারি করুন।</p></div>
+      <div class="card"><h3>কেনাকাটার রিমাইন্ডার</h3><p style="margin:0">মেনুর "Shopping reminder"-এ দিন ও সময় বাছুন। ফোনে অ্যালার্ম বাজে, রিস্টার্টের পরও চলে।</p></div>
+      <div class="card"><h3>স্টল রিপোর্ট</h3><p style="margin:0">স্টলের পাতার পতাকা চিহ্ন দিয়ে সমস্যা জানান। একই ফোন থেকে একটি স্টলে দিনে একবার।</p></div>
+      <div class="card"><h3>ক্যাটল মার্কেট (পশু হাট)</h3><p style="margin:0">নিচের বারের ৫ম ট্যাব। শুধু বিজ্ঞাপন, কার্ট বা অর্ডার নেই। পশুর দাম প্রতিটির, ওজন সবসময় আনুমানিক। খামারে গিয়ে নিজে দেখে কিনুন।</p></div>
+    </div>
+    <h3>স্টল বা পশুর সঠিক ঠিকানা চাওয়া</h3>
+    <p>গোপনীয়তার জন্য স্টল ও পশুর সঠিক ঠিকানা সবার সামনে থাকে না। Google অ্যাকাউন্টে "Location চাই" চাপলে মালিকের কাছে অনুরোধ যায়। মালিক দিলে আপনি ২৪ ঘণ্টা সঠিক জায়গা দেখতে পান। না দিলে ৫ ঘণ্টা পর আবার চাইতে পারেন। কোনো পশু বিক্রি হয়ে গেলে তার অনুরোধ বন্ধ হয়ে যায়।</p>
+    <h3>সংযোগ সমস্যা</h3>
+    <ul>
+      <li>ইন্টারনেট চলে গেলে "Connection Lost" পর্দা আসে, ফিরলে "Back online" দেখায়।</li>
+      <li>সার্ভার ঘুমিয়ে থাকলে জাগতে এক মিনিট পর্যন্ত লাগতে পারে। ৫ সেকেন্ডের বেশি লাগলে উপরে "The server is waking up" দেখায়।</li>
+      <li>Help ও Support-এর "Check connection" চাপলে অ্যাপ বলে সার্ভার ঠিক আছে, জেগেছে, না ফোনে ইন্টারনেট নেই।</li>
+    </ul>
+  </section>
+
+  <section id="safe">
+    <h2>১২. নিরাপত্তা ও নিয়ম</h2>
+    <div class="grid">
+      <div class="callout ok"><strong class="t">করবেন</strong><ul>
+        <li>Advance শুধু অ্যাপে দেখানো স্টলের নিজস্ব bKash/Nagad নম্বরে পাঠান।</li>
+        <li>TrxID ঠিকঠাক লিখুন, স্ক্রিনশট রেখে দিন।</li>
+        <li>Rider-কে নগদ দিয়ে, পার্সেল হাতে পেয়ে তারপর OTP বলুন।</li>
+        <li>পার্সেল ঠিক না হলে "Report a problem" চাপুন।</li>
+        <li>ঠিকানা ও GPS pin ঠিক রাখুন যাতে Rider খুঁজে পায়।</li>
+        <li>Rider-এর কল ধরুন, সময়মতো উপস্থিত থাকুন।</li>
+      </ul></div>
+      <div class="callout bad"><strong class="t">করবেন না</strong><ul>
+        <li>পার্সেল না পেয়ে বা টাকা না দিয়ে OTP বলা।</li>
+        <li>অচেনা নম্বরে বা অ্যাপের বাইরে নির্দেশ পেয়ে advance পাঠানো।</li>
+        <li>অর্ডার দিয়ে বাতিল করা বা advance না দেওয়া, বারবার।</li>
+        <li>পার্সেল নিতে অস্বীকার করা বা Pickup-এ না যাওয়া।</li>
+        <li>অন্যের নামে ভুয়া রিভিউ বা নিজের স্টলে রিভিউ।</li>
+      </ul></div>
+    </div>
+    <div class="callout money" style="margin-top:12px"><strong class="t">স্ট্রাইক ও অর্ডারে নিষেধাজ্ঞা</strong>
+      <p>আপনার দায়ে বাতিল অর্ডার (নিজে বাতিল করা, ৩০ মিনিটে advance না দেওয়া, Pickup-এ না নেওয়া) একটি স্ট্রাইক। <strong>১৪ দিনে ৩টি স্ট্রাইক হলে ৭ দিন নতুন অর্ডার দেওয়া যায় না।</strong> অ্যাপ কোনদিন পর্যন্ত বন্ধ তা জানায়, মেয়াদ শেষে নিজে খুলে যায়।</p></div>
+    <p class="note" style="margin-top:8px">অ্যাকাউন্ট মুছতে চাইলে অ্যাপের ভেতরেই পারেন (Google সাইন-ইনসহ), নিরাপত্তার কাউন্টডাউন দিয়ে। কোনো অর্ডার শেষ না হয়ে থাকলে আগে সেটি শেষ করতে হয়।</p>
+  </section>
+
+  <section id="timers">
+    <h2>১৩. সময়সীমার তালিকা</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>কী</th><th class="num">সময়</th><th>কী হয়</th></tr></thead>
+      <tbody>
+        <tr><td>স্টলের Accept করা</td><td class="num">২ ঘণ্টা</td><td>না করলে নিজে বাতিল, আপনি কিছু দেননি</td></tr>
+        <tr><td>আপনার advance দেওয়া</td><td class="num">৩০ মিনিট</td><td>না দিলে বাতিল ও স্ট্রাইক</td></tr>
+        <tr><td>"Not received"-এর পর আবার পাঠানো</td><td class="num">আরও ৩০ মিনিট</td><td>না দিলে বাতিল</td></tr>
+        <tr><td>স্টলের advance যাচাই</td><td class="num">২ ঘণ্টা</td><td>না করলে আপনি বাতিল করে refund চাইতে পারেন</td></tr>
+        <tr><td>স্টলের পাঠানো (Quick)</td><td class="num">৪৫–৩৬০ মিনিট</td><td>দেরি হলে বাতিল করে advance ফেরত</td></tr>
+        <tr><td>স্টলের পাঠানো (কুরিয়ার)</td><td class="num">৪৮ ঘণ্টা</td><td>একই</td></tr>
+        <tr><td>Refund-এ স্টলের পাঠানো</td><td class="num">৪৮ ঘণ্টা</td><td>না পাঠালে আপনি রিপোর্ট করতে পারেন</td></tr>
+        <tr><td>Refund পাঠানোর পর আপনার সাড়া</td><td class="num">৭২ ঘণ্টা</td><td>নিজে থেকে RECEIVED</td></tr>
+        <tr><td>Return-এর অনুরোধ</td><td class="num">৭ দিন</td><td>Delivered-এর পর থেকে</td></tr>
+        <tr><td>Pickup নেওয়ার সময়</td><td class="num">২৪ ঘণ্টা / ৩ ঘণ্টা</td><td>সাধারণ / রান্না করা খাবার; না নিলে বাতিল ও স্ট্রাইক</td></tr>
+        <tr><td>নিজে থেকে Delivered</td><td class="num">২৪ ঘ / ৪৮ ঘ / ৭ দিন</td><td>Quick / অন্য / কুরিয়ার, সমস্যা না জানালে</td></tr>
+        <tr><td>সঠিক ঠিকানার অনুমতি</td><td class="num">২৪ ঘণ্টা</td><td>এরপর আবার চাইতে হয়</td></tr>
+        <tr><td>Guest অ্যাকাউন্ট</td><td class="num">৩০ দিন</td><td>Google যুক্ত না করলে মেয়াদ শেষ</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section id="help">
+    <h2>১৪. সমস্যা হলে কী করবেন</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>সমস্যা</th><th>করণীয়</th></tr></thead>
+      <tbody>
+        <tr><td>অর্ডার দেওয়া যাচ্ছে না, "ন্যূনতম ৳১০০" বার্তা</td><td>ওই স্টলের পণ্য আরও যোগ করুন, কুপনের আগের দামে ৳১০০ হতে হবে।</td></tr>
+        <tr><td>রান্না করা খাবার অর্ডার হচ্ছে না</td><td>স্টল আপনার Quick সীমার বাইরে হতে পারে। Pickup চালু থাকলে নিজে নিন, অথবা কাছের স্টল দেখুন। GPS pin দিয়েছেন কিনা দেখুন।</td></tr>
+        <tr><td>অর্ডার দিতে গেলে অ্যাপ একটি তারিখসহ বার্তা দেখায় ও অর্ডার নেয় না</td><td>এটি স্ট্রাইকের নিষেধাজ্ঞা। অ্যাপ শেষের তারিখ দেখায়, তারিখের পর নিজে খুলবে।</td></tr>
+        <tr><td>Advance পাঠিয়েছি, স্টল "Not received" বলেছে</td><td>TrxID ও প্রেরকের নম্বর ঠিক আছে কিনা মিলিয়ে ৩০ মিনিটের মধ্যে আবার পাঠান। স্ক্রিনশট জুড়ুন।</td></tr>
+        <tr><td>Refund আসেনি</td><td>৭২ ঘণ্টার মধ্যে "Not received" চাপুন। ৪৮ ঘণ্টা কেটে গেলে রিপোর্ট করা যায়।</td></tr>
+        <tr><td>পার্সেলে সমস্যা</td><td>"Report a problem" চাপুন। দরকারে ৭ দিনের মধ্যে Return অনুরোধ করুন।</td></tr>
+        <tr><td>অ্যাপ ধীর বা আটকে আছে</td><td>Help ও Support > Check connection। সার্ভার জাগতে এক মিনিট পর্যন্ত লাগতে পারে।</td></tr>
+        <tr><td>অন্য সমস্যা</td><td>Help ও Support থেকে আমাদের জানান।</td></tr>
+      </tbody></table></div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+<script>
+(function(){
+  var dark=false;
+  try{var t=document.documentElement.dataset.theme;dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}
+  if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:dark?'dark':'default',securityLevel:'strict',flowchart:{htmlLabels:true}});}
+})();
+</script>
+</body>
+</html>
