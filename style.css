@@ -112,3 +112,24 @@ input[type=checkbox]{width:auto;margin-top:7px;accent-color:var(--accent)}
 
 footer{border-top:1px solid var(--line);margin-top:64px;color:var(--soft);font-size:.92rem}
 footer .wrap{padding-top:22px;padding-bottom:30px}
+
+/* ---- mobile ---- */
+@media(max-width:700px){
+  body{font-size:16px}
+  .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .hero{padding:32px 0 6px}
+  .hero p{font-size:1rem}
+  .journey{margin:30px 0 26px}
+  .panel .body{padding:18px 18px 20px}
+  .panel .links a{flex:1 1 auto;text-align:center}
+  .appbar{margin-top:18px;border-radius:16px}
+  .appbar .body{padding:20px 18px}
+  .form-card{padding:18px}
+  .btn{width:100%;text-align:center}
+  th,td{padding:9px 10px}
+  main h2{margin-top:1.7em}
+  footer{margin-top:44px}
+  footer .wrap{padding-top:18px;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+}
+img,video,iframe{max-width:100%;height:auto}
+pre,code{overflow-wrap:anywhere}

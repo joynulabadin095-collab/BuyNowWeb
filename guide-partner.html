@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <title>SellNow ব্যবসার গাইড</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
 <style>
@@ -24,11 +25,10 @@
   --bad:#ff8a80; --bad-weak:#3d1f1c; --info:#8ab8ee; --info-weak:#17283d; color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;margin:0;
-  padding-block:24px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-main{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;margin:0;padding:0 0 64px}
+main{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:36px;padding:24px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
 h1{font-size:30px;line-height:1.25;margin:0 0 8px;text-wrap:balance}
-h2{font-size:22px;line-height:1.35;margin:0 0 10px;text-wrap:balance;scroll-margin-top:16px}
+h2{font-size:22px;line-height:1.35;margin:0 0 10px;text-wrap:balance;scroll-margin-top:72px}
 h3{font-size:17px;margin:14px 0 6px}
 p{margin:0 0 10px;max-width:68ch}
 ul,ol{margin:0 0 10px;padding-left:22px}
@@ -67,10 +67,10 @@ code{font-size:13px;background:var(--bg);border:1px solid var(--line);border-rad
 .steps b{display:block}
 pre.mermaid{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
 </style>
+<link rel="stylesheet" href="menu.css">
 </head>
 <body>
 <main>
-  <p class="note"><a href="index.html">&larr; BuyNow</a></p>
   <header>
     <div class="eyebrow">SellNow (Partner) অ্যাপ · Vendor নির্দেশিকা</div>
     <h1>আপনার স্টলের ব্যবসা চালানোর পূর্ণ গাইড</h1>
@@ -460,5 +460,7 @@ sequenceDiagram
   if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:dark?'dark':'default',securityLevel:'strict',flowchart:{htmlLabels:true}});}
 })();
 </script>
+<script src="menu.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

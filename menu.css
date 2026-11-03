@@ -1,0 +1,47 @@
+/* Slide menu (drawer) and the header it lives in. Shared by every page, including the guides.
+   Colours come from the page's own tokens (style.css or the guide pages), with fallbacks. */
+.site-head{--m-bg:var(--bg,#F7FAF8);--m-surface:var(--surface,#fff);--m-ink:var(--ink,#0F2018);--m-soft:var(--soft,#55685D);
+  --m-line:var(--line,#D5E4DA);--m-accent:var(--accent,var(--brand,#0A6B42));--m-tint:var(--mint,var(--brand-weak,#E6F3EB));--m-raised:var(--raised,var(--bg,#EEF5F0))}
+.has-menu .site-head nav>a{display:none}
+.site-head{position:sticky;top:0;z-index:40;background:var(--m-bg);border-bottom:1px solid var(--m-line);
+  padding-top:env(safe-area-inset-top,0px)}
+.site-head .wrap,.site-head .head-row{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;max-width:1040px;margin:0 auto;
+  padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
+.site-head .brand{margin-right:auto;font:700 1.2rem var(--display,system-ui,sans-serif);letter-spacing:-.02em;color:var(--m-ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+.site-head .brand::before{content:"";width:24px;height:24px;border-radius:8px;background:radial-gradient(circle,var(--m-bg) 0 4px,transparent 4.5px),var(--m-accent)}
+.site-head nav{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+#menu-btn{display:inline-grid;place-items:center;width:42px;height:42px;border:1px solid var(--m-line);border-radius:12px;background:transparent;color:var(--m-ink);cursor:pointer;padding:0;flex:none}
+#menu-btn:hover{background:var(--m-raised)}
+#menu-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+#theme-toggle{background:transparent;color:var(--m-ink);border:1px solid var(--m-line);border-radius:999px;padding:7px 14px;font:500 .9rem var(--body,system-ui,sans-serif);cursor:pointer;margin:0;white-space:nowrap}
+#theme-toggle:hover{background:var(--m-raised)}
+@media(max-width:480px){#theme-toggle{padding:7px 11px;font-size:.85rem}}
+
+.menu-scrim{position:fixed;inset:0;z-index:50;background:rgba(5,15,10,.5);opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+.menu-drawer{position:fixed;top:0;bottom:0;left:0;z-index:60;width:min(86vw,340px);display:flex;flex-direction:column;
+  background:var(--m-surface,#fff);color:var(--m-ink,#0F2018);border-right:1px solid var(--m-line,#D5E4DA);
+  transform:translateX(-102%);visibility:hidden;transition:transform .25s ease,visibility .25s;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);
+  font:400 16px/1.5 var(--body,system-ui,sans-serif)}
+.menu-open .menu-scrim{opacity:1;visibility:visible}
+.menu-open .menu-drawer{transform:none;visibility:visible}
+.menu-open{overflow:hidden}
+.menu-top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--m-line,#D5E4DA)}
+.menu-top strong{font:700 1.15rem var(--display,system-ui,sans-serif);letter-spacing:-.02em}
+.menu-close{width:40px;height:40px;border:1px solid var(--m-line,#D5E4DA);border-radius:12px;background:transparent;color:inherit;font-size:1.3rem;cursor:pointer;line-height:1}
+.menu-scroll{overflow-y:auto;overscroll-behavior:contain;padding:8px 10px 20px;flex:1}
+.menu-group{border-bottom:1px solid var(--m-line,#D5E4DA)}
+.menu-group:last-child{border-bottom:0}
+.menu-group summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:13px 10px;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--m-soft,#55685D)}
+.menu-group summary::-webkit-details-marker{display:none}
+.menu-group summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .2s;margin-right:4px}
+.menu-group[open] summary::after{transform:rotate(-135deg)}
+.menu-group ul{list-style:none;margin:0 0 10px;padding:0}
+.menu-group li{margin:0;max-width:none}
+.menu-group a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;color:var(--m-ink,#0F2018);text-decoration:none;font-weight:500;min-height:44px}
+.menu-group a:hover{background:var(--m-raised,#EEF5F0)}
+.menu-group a[aria-current="page"]{background:var(--m-tint,#E6F3EB);color:var(--m-accent,#0A6B42);font-weight:700}
+.menu-group a small{margin-left:auto;color:var(--m-soft,#55685D);font-weight:400;font-size:.8rem}
+.menu-drawer a:focus-visible,.menu-drawer button:focus-visible,.menu-group summary:focus-visible,#menu-btn:focus-visible{outline:3px solid var(--route,var(--m-accent,#1FA663));outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.menu-drawer,.menu-scrim,.menu-group summary::after{transition:none}}
