@@ -35,8 +35,8 @@ ul,ol{margin:0 0 10px;padding-left:22px}
 li{margin-bottom:5px}
 .lead{color:var(--soft);font-size:17px}
 .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);font-weight:700;margin-bottom:6px}
-.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.toc a{font-size:13px;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:3px 10px;border-radius:99px}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:14px}
+.toc a{display:block;font-size:14px;line-height:1.35;text-align:left;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:9px 12px;border-radius:10px}
 .toc a:hover,.toc a:focus-visible{border-color:var(--brand);color:var(--brand)}
 .callout{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
 .callout.money{background:var(--money-weak);border-color:var(--money)}
