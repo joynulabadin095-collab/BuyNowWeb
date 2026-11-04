@@ -70,11 +70,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .panel h2,.panel h3{font-family:var(--display);font-weight:600;letter-spacing:-.015em;margin:0 0 4px;line-height:1.2}
 .panel p{margin:.4em 0 1em}
 .panel .tag{color:var(--soft);font-size:.95rem;margin:0 0 .6em}
-.panel .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.panel .links a{background:var(--accent);color:var(--on-accent);padding:9px 16px;border-radius:12px;text-decoration:none;font-weight:600;font-size:.95rem}
-.panel .links a:hover{filter:brightness(1.08)}
-.panel .links a.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
-.panel .links a.ghost:hover{background:var(--raised);filter:none}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.links a{background:var(--accent);color:var(--on-accent);padding:9px 16px;border-radius:12px;text-decoration:none;font-weight:600;font-size:.95rem}
+.links a:hover{filter:brightness(1.08)}
+.links a.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
+.links a.ghost:hover{background:var(--raised);filter:none}
 code{font-size:.9em;color:var(--soft)}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0}
 .duo.three{grid-template-columns:repeat(3,1fr)}
@@ -121,7 +121,7 @@ footer .wrap{padding-top:22px;padding-bottom:30px}
   .hero p{font-size:1rem}
   .journey{margin:30px 0 26px}
   .panel .body{padding:18px 18px 20px}
-  .panel .links a{flex:1 1 auto;text-align:center}
+  .links a{flex:1 1 auto;text-align:center}
   .appbar{margin-top:18px;border-radius:16px}
   .appbar .body{padding:20px 18px}
   .form-card{padding:18px}
