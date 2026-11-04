@@ -2,6 +2,11 @@
 (function () {
   var GROUPS = [
     { title: 'BuyNow', items: [['Home', 'index.html']] },
+    { title: 'Get the apps', bn: 'অ্যাপ ডাউনলোড', items: [
+      ['BuyNow on Google Play', 'https://play.google.com/store/apps/details?id=com.buynow.app', 'গ্রাহক'],
+      ['BuyNow Partner on Google Play', 'https://play.google.com/store/apps/details?id=com.buynow.vendor', 'বিক্রেতা'],
+      ['BuyNow Rider on Google Play', 'https://play.google.com/store/apps/details?id=com.buynow.rider', 'রাইডার']
+    ] },
     { title: 'Guides', bn: 'নির্দেশিকা', items: [
       ['Shopper guide', 'guide-buynow.html', 'গ্রাহক'],
       ['Stall owner guide', 'guide-partner.html', 'বিক্রেতা'],
