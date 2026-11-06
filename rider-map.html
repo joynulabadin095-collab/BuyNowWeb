@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Rider Map – BuyNow</title>
+<meta name="description" content="Map of your own deliveries. For BuyNow riders only.">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<style>
+#rm-map{height:60vh;min-height:320px;border-radius:12px;margin:12px 0}
+#rm-list{list-style:none;padding:0;margin:0}
+#rm-list li{padding:10px 12px;border:1px solid rgba(128,128,128,.35);border-radius:10px;margin:8px 0;cursor:pointer}
+#rm-list li small{display:block;opacity:.75}
+.rm-hide{display:none}
+</style>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="index.html">BuyNow</a>
+<nav aria-label="Main"><a href="index.html">Home</a><button id="theme-toggle" type="button">Night mode</button></nav>
+</div></header>
+<main class="wrap narrow">
+<h1>Rider map</h1>
+<p class="muted">For BuyNow riders only. Sign in with the Google account you use in the BuyNow Rider app. You see only your own deliveries.</p>
+<p id="rm-status" role="status"></p>
+<p><button id="rm-signin" type="button" class="rm-hide">Sign in with Google</button> <button id="rm-signout" type="button" class="rm-hide">Sign out</button></p>
+<div id="rm-app" class="rm-hide">
+<div id="rm-map" aria-label="Map of your deliveries"></div>
+<ul id="rm-list"></ul>
+<p class="muted" id="rm-note"></p>
+</div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="rider-map-config.js"></script>
+<script type="module" src="rider-map.js"></script>
+</body>
+</html>
